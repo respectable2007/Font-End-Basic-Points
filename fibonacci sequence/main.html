@@ -1,0 +1,36 @@
+<!DOCTYPE>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <title>斐波那契数列</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+    //   var f0 = 1,
+    //       f1 = 1;
+    //   function fibo(n){
+    //     var cur = 0;
+    //     for(var i = 3;i < n; i++) {
+    //       cur = f0 + f1;
+    //       f0 = f1;
+    //       f1 = cur;
+    //       console.log(cur);
+    //     }
+    //   }
+    //   fibo(6)
+      
+    // function fibo(n) {
+    //     if(n < 3) {
+    //       return 1;
+    //     }
+    //     return fibo(n-1) + fibo(n-2);
+    // }
+    // console.log(fibo(6));
+    function fibo(n){
+      return Math.pow((1+Math.sqrt(5))/2,n)/Math.sqrt(5) - Math.pow((1-Math.sqrt(5))/2,n)/Math.sqrt(5);
+    }
+    console.log(fibo(6));
+      
+    </script>
+  </body>
+</html>

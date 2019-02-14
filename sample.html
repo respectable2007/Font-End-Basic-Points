@@ -1,0 +1,24 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>亿商平台</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function nearMax(n) {
+			while(Math.floor(n/4)%10!=0){
+				//var m=n%Math.pow(10,j);
+				//var k=Math.ceil(n/Math.pow(10,j)+1);
+				//n=m?Math.ceil(k*(Math.pow(10,j))):n;
+				//j++;
+				n=Math.ceil(n/10)*10;
+				n+=10;
+			};
+			return n;
+		}
+		console.log(nearMax(96));
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>调用栈</title>
+  </head>
+  <body>
+    <button onclick='a()'>Click</button>
+    <script type='text/javascript'>
+    /*点击后，函数添加到运行队列中，执行a函数，推入调用栈，a函数又调用其他函数;
+      创建栈帧推入调用栈，等回调函数执行完毕，推出调用栈，继续执行a函数，a函数执行完毕，推出调用栈。
+      然后执行下一个函数
+    */
+      function a(){
+        console.log('333')
+        setTimeout(function(){
+          console.log('button click')
+        },0);
+      }
+      console.log('111');
+      setTimeout(function(){
+         console.log('second timeout')
+      },5000)//5s后回调函数添加到运行队列中
+      console.log('2222')
+    </script>
+  </body>
+</html>

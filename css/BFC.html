@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>BFC</title>
+    <style type="text/css">
+      div,p{
+        margin:0;
+        padding: 0;
+      }
+      .p{
+        background:gray;
+        overflow: hidden;
+      }
+      .s{
+        background: #000;
+        margin:50px 0;
+      }
+      .c1{
+        width:100px;
+        background: #fff;
+        float:left;
+      }
+      .c2{
+        height: 200px;
+        background:lightcoral;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="p">
+        <div class="c1">111111</div>
+        <div class="c2">ffhkdfjkdal;j</div>
+    </div>
+    <div class="s">
+    </div>
+  </body>
+</html>

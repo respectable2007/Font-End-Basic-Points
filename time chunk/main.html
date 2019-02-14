@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>分时函数</title>
+  </head>
+  <body>
+  <script type="text/javascript">
+    var arr = [];
+    for(var i = 9999;i >= 0;i--){
+      arr.push(i);
+    }
+    var timeChunk = function(arr,fn,num) {
+      var obj,t;
+      var start = function() {
+        for(var i = Math.min(num || 1,arr.length); i > 0;i--) {
+          obj = arr.pop();
+          fn(obj);
+        }
+      }
+      return function() {
+        t = setInterval(function() {
+          if(arr.length === 0) {
+            clearInterval(t);
+          }
+          start();
+        },200)
+      }
+    }
+    time = timeChunk(arr,function(){
+      var element = document.createElement('div');
+      element.innerHTML = arguments[0];
+      document.body.appendChild(element);
+    },10);
+    time();
+  </script>
+  </body>
+</html>

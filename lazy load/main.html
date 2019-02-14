@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <meta charset='utf-8'>
+     <title>懒加载</title>
+     <style type="text/css">
+      html,body{
+        width:100%;
+        height: 100%;
+        margin: 0;
+        padding:0;
+        background:#fff;
+      }
+      div,img{
+        margin:0;
+        padding:0;
+      }
+      .content {
+        width: 100%;
+        height: 100%;
+      }
+      .container{
+          width: 1346px;
+          height: 800px;
+          position: relative;
+          background:#eee;
+          border:1px solid red;
+      }
+      img{
+        position: absolute;
+        max-width:1346px;
+        max-height: 800px;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+        margin:auto;
+      }
+     </style>
+   </head>
+   <body>
+      <div class="content">
+      </div>
+      <script type="text/javascript">
+        var arr = ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548999440603&di=71747f6a2e964dfb88dc4d4e0238f72a&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201402%2F14%2F20140214120558_2f4NN.jpeg',
+                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548998818596&di=7367ad88b51185a9b7e34d94b7a185d9&imgtype=0&src=http%3A%2F%2Fs9.knowsky.com%2Fbizhi%2Fl%2F20100615%2F20109119%2520%25286%2529.jpg',
+                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548998818595&di=75274bede07b5723330daa27df17af40&imgtype=0&src=http%3A%2F%2Fimg.article.pchome.net%2F00%2F50%2F59%2F93%2Fpic_lib%2Fwm%2F02.jpg',
+                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548998818595&di=ed95cbabe1bc715b650a81daefb69358&imgtype=0&src=http%3A%2F%2Fbbs.crsky.com%2F1236983883%2FMon_1208%2F25_184488_df90c29ac4be30a.jpg',
+                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548998818594&di=a64a17ac96a86e7c226f307bca9275b9&imgtype=0&src=http%3A%2F%2Fwww.33lc.com%2Farticle%2FUploadPic%2F2012-7%2F201272616185715947.jpg'],
+                frag = document.createDocumentFragment();
+            for(var i = arr.length - 1 ;i >= 0; i--) {
+              var img = document.createElement('img'),
+                  div = document.createElement('div');
+                  div.setAttribute('class','container');
+              img.setAttribute('data-url',arr[i]);
+              if(i < 2) {
+                img.src = arr[i];
+              }
+              div.appendChild(img);
+              frag.insertBefore(div,frag.firstChild);
+            }
+            document.getElementsByClassName('content')[0].appendChild(frag);
+        //滚动事件
+        (function(window,doc,arr) {
+            //获取当前可视区大小
+            var clientW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+                clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
+                frag = document.createDocumentFragment(),
+                con = document.getElementsByClassName('content')[0],
+                urls = arr,
+                w = Math.floor(clientH / 800),
+                w1 = clientH % 800,
+                init = w + ( w1 ? 1 : 0),
+                curIndex = init,
+                imgArr = doc.getElementsByTagName('img');
+            function lazyLoad() {
+              var scrollTop = document.body.scrollTop || document.documentElement.scrollTop; 
+              for(let i = 0; i<urls.length;i++){ 
+                var img = imgArr[i];
+                //在可视化区域内
+                var dis = img.parentElement.offsetTop - scrollTop;
+                if(dis < clientH && (dis >= 0 || dis + 800 >= 0)){
+                  img.src = img.getAttribute("data-url"); 
+                } else {
+                  img.src = ''
+                }
+              }
+            }
+            function mouseWheel (e) {
+             lazyLoad()
+            }
+            doc.addEventListener('mousewheel',mouseWheel);
+            doc.addEventListener('DOMMouseScroll',mouseWheel);
+        })(window,document,arr);
+        
+
+      </script>
+   </body>
+</html>

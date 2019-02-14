@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>inline-block</title>
+    <style type="text/css">
+    *{margin:0;padding:0;}
+    /* method1 */
+     /* .parent{
+       font-size: 0;
+     }
+     .parent div{
+       font-size: 16px;
+       vertical-align:top;
+     }
+     .left{
+        display:inline-block;
+        width:100px;
+        margin-right: 20px;
+        background:lightblue;
+     }
+     .right{
+        display: inline-block;
+        width:calc(100% - 120px);
+        background: lightcoral;
+     } */
+     /* method2 */
+     .parent{
+        font-size:0;
+     }
+     .parent div{
+        font-size: 16px;
+        vertical-align: top;
+     }
+     .left{
+        display:inline-block;
+        width:100px;
+        background:lightblue;
+        position: relative;
+     }
+     .rightWrap{
+        display: inline-block;
+        width: 100%;
+        margin-left: -100px;
+     }
+     .right{
+        margin-left: 120px;
+        background: lightcoral; 
+     }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="parent">
+      <div class="left">left</div>
+      <div class="right">
+        <p>right</p>
+        <p>right</p>
+      </div>
+    </div> -->
+    <div class="parent">
+      <div class="left">left</div>
+      <div class="rightWrap">
+          <div class="right">
+            <p>right</p>
+            <p>right</p>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

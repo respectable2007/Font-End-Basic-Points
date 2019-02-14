@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+   <meta charset='utf-8'>
+   <meta http-equiv='content-type' content='text/html'>
+  <head>
+    <title>mass code</title>
+    <!-- <link rel='stylesheet' type="text/css" href='./main.css'> -->
+    <style type="text/css">
+      .container{
+        /* position:relative; */
+        width:200px;
+        height:200px;
+        background:red;
+      }
+      .container > img{
+        /* position:absolute;
+        max-width: 200px;
+        max-height: 200px;
+        margin:auto;
+        top:0;
+        bottom: 0;
+        right: 0;
+        left: 0; */
+        object-fit:contain;
+        width: 100%;
+        height: 100%;
+      }
+      nav{
+        display:block;
+        background:green;
+        width:200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav></nav>
+     <div id="a">
+       <p>111</p>
+       <ul>
+         <li>1</li>
+         <li>2</li>
+         <li>3</li>
+         <li>4</li>
+       </ul>
+     </div>
+     <label for='b' >bbbb</label>
+     <input type='text' id='b' placeholder="xxxx">
+     <label for='b'>bbb <input type='text'></label>
+     <a href="http://www.w3school.com.cn/html/" accesskey="h">HTML</a><br />
+     <div dir='rtl' lang='en'>人生</div>
+     
+     dahalhfdjalfhdjalhfdjalfhaslfh
+     <p>
+     djkalfhdalfhdalfjdafhalfhda
+     <p>
+     <div style='position:relative;height:200px;width:200px;overflow: hidden'>
+       <img src="https://sfault-avatar.b0.upaiyun.com/408/449/4084493968-55c2142e12b21_huge256" 
+            alt='picture' title='ren' style='position:absolute;top:50%;height: 50%;transform: translate(50%,-50%)'>
+     </div>
+     <div class="container">
+       <img src='http://f.hiphotos.baidu.com/image/pic/item/9f510fb30f2442a79cac5e59dc43ad4bd01302af.jpg'>
+     </div>
+     <span class="icon-zao">
+       <span class="path1"></span>
+     </span> 
+     <mark>11111</mark>
+     <meter></meter>
+     <script type='text/javascript'>
+       "use strict";
+       window.t = 1;
+       var fg = '    +';
+      //  console.log(parseInt(fg));
+      //  console.log(null.valueOf());
+      // var f = {
+      //    name: 'xx',
+      //    age: 12
+      // }
+
+      function F() {
+        this.age = 12
+      }
+      var p = new F()
+      var f1 = Object.create(p,{
+        sex: {
+          value: 'F'
+        }
+      })
+      // console.log(f1.hasOwnProperty('sex'))
+      // console.log(f1)
+      // console.log(f1 instanceof Object)
+      // console.log(f1 instanceof F)
+
+      
+      // console.log(p.constructor)
+      // console.log(p.__proto__.constructor)
+      // function F(){
+      //   this.name = '1';
+      // }
+      // F.prototype.valueOf = function(){
+      //   return this.name;
+      // }
+
+      // console.log(new F() == '1');
+      // Object.create底层实现-原型式继承
+      Object.prototype.create = function(){
+         function E(){
+            if(arguments.length > 1){
+               for(var key in arguments[1]){
+               this[key] = key.value;
+               }
+            }
+         };
+         F.prototype = arguments[0];
+        return new E();
+      }
+      var f2 = Object.create(F,{
+        name:{
+          value:'xx'
+        }
+      })
+      // console.log(f2)
+      // console.log(f2.__proto__)
+      // console.log(f2 instanceof F);
+      // console.log(document.getElementsByClassName('a'))
+
+      // var filter = function(node){
+      //   return node.nodeType == 1? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+      // }
+      // var nodeIterator = document.createNodeIterator(document,NodeFilter.SHOW_ALL,filter,false);
+      // var node = nodeIterator.nextNode();
+      // while(node != null) {
+      //   console.log(node.tagName);
+      //   node = nodeIterator.nextNode();
+      // }
+
+      // var walker = document.createTreeWalker(document.getElementById('a'),NodeFilter.SHOW_ELEMENT,null,false);
+      // walker.firstChild();
+      // walker.nextSibling();
+      // var node = walker.firstChild();
+      // while(node != null) {
+      //   console.log(node.tagName);
+      //   node = walker.nextSibling();
+      // }
+
+      // function dfs(node){
+      //   if(!(node instanceof Node) || node.childNodes.length == 0){
+      //     return;
+      //   }
+      //   var child = node.childNodes;
+      //   for(var i = 0; i < child.length;i++) {
+      //     if(child[i].nodeType != 1) {
+      //       continue;
+      //     }
+      //     console.log(child[i]);
+      //     dfs(child[i]);
+      //   }
+      //   return;
+      // }
+
+      // function dfs(node) {
+      //   var list = [],
+      //   head = 0,
+      //   tail = 0;
+      //   list[tail] = node;
+      //   tail ++;
+      //   if(!(node instanceof Node) && node.childNodes.length == 0){
+      //     return;
+      //   }
+      //   while(head < tail){
+      //     var sublist = list[head].childNodes;
+      //     for(var i = 0,len = sublist.length; i < len; i ++) {
+      //       if(sublist [i].nodeType != 1) {
+      //        continue;
+      //       };
+      //       list[tail] = sublist[i];
+      //       tail++;
+      //     }
+      //     head ++;
+      //   }
+      // }
+      // dfs(document.getElementById('a'));
+      // dfs(null);
+      
+      function Father() {}
+      Father.prototype = {
+        constructor:Father
+      }
+      function Child(){}
+      Child.prototype = new Father();
+      var p = new Child();
+      Child.prototype = {
+        name: 'xxx'
+      }
+      var p1 = new Child();
+      // console.log(Child.prototype.isPrototypeOf(p));
+      
+      function a() {
+        console.log(arguments);
+        // console.log(arguments.arguments)
+        for(let i in arguments){
+          console.log(arguments[i]);
+        };
+      }
+      // a(1);
+      
+      var name = 'The Window';
+      var obj = new Object();
+      obj.name = 'The Object';
+      obj.getName = function() {
+        console.log(this.name);
+      }
+      // var obj = {
+      //   name: 'The Object',
+      //   getName: function () {
+      //     console.log(this.name);
+      //   }
+      // }
+      // obj.getName()
+
+
+      // var name ;
+      // var name = 'change';
+      // console.log(name);
+     
+    //  var fullName = '';
+     var data = {
+       fullName: '',
+       setName: function(a,b) {
+         this.fullName = a + b;
+         console.log(this.fullName)
+       }
+     }
+    //  data.setName('a','b');
+     function input(c,d,callback,obj) {
+       callback.apply(obj,[c,d]);
+     }
+    //  input('z','h',data.setName,data);
+    //  console.log(fullName);
+    //  console.log(data.fullName);
+     
+    // Function.prototype.call2 = function(){
+    //   var context = arguments[0] || window,
+    //   args = [],
+    //   res;
+    //    context.fn = this;
+    //    args = [].slice.call(arguments,1);
+    //    res = eval('context.fn('+ args+')');
+    //    delete context.fn;
+    //    return res;
+    // }
+
+    // Function.prototype.apply2 = function(){
+    //   var context = arguments[0] || window,
+    //       args = [],
+    //       result;
+    //   if(arguments.length > 1) {
+    //     var argus = arguments[1];
+    //     if(Object.prototype.toString(argus) === '[object Object]') {
+    //       args = [].slice.call(argus)
+    //     } else {
+    //       args = argus;
+    //     }
+    //   }
+    //   context.fn = this;
+    //   result = eval('context.fn(' + args +')');
+    //   return result;
+    // }
+
+    Function.prototype.bind = function(){
+      var context = arguments[0] || window,
+          fn = this,
+          args = [];
+          if (arguments.length > 1) {
+            args = [].slice.call(arguments, 1);
+          }
+      return function() {
+        var result;
+        context.f = fn;
+        result = eval('context.f('+ args +')');
+        delete context.f;
+        return result;
+      }
+    }
+
+    function sum(a,b){
+      console.log(this.name);
+      return a + b;
+    }
+    // function add(){
+    //   var obj = {
+    //     '0':1,
+    //     '1':2
+    //   }
+    //   return sum.apply(this,obj);
+    // }
+    // console.log(add());
+
+    // var o = {
+    //   name: 'xx'
+    // }
+    // var sum2 = sum.bind(o,1,2)
+    // console.log(sum2())
+    // sum2 = null;//闭包函数用完，最好解除引用
+
+      // function sum2(){
+      //   var total = 0,
+      //       args = arguments[0] || [];
+      //   for(var i =  args.length - 1; i >= 0; i--) {
+      //     total += args[i];
+      //   }
+      //   return total;
+      // }
+      // var curry = function(fn){
+      //   var args = [];
+      //   var sum = function(){
+      //     if(arguments.length == 0) {
+      //       return fn(args);
+      //     }
+      //     [].push.apply(args,[].slice.call(arguments));
+      //     return sum;
+      //   }
+      //   return sum;
+      // }
+      // var add = curry(sum2);
+      // add(3,4)(3,4)
+      // // sum(3,4)
+      // console.log(add())
+      var person={
+        toString:function(){
+          return 'string';
+        },
+        toLocaleString:function(){
+          return 'locale';
+        },
+        valueOf:function(){
+          return 'value';
+        }
+      }
+      // var arr = [person];
+      // console.log(arr.toString());
+      // console.log(arr.toLocaleString());
+      // console.log(arr.valueOf());
+      // console.log(arr);
+      // var arr = [1,2,3,4,5];
+      // arr.reverse()
+      // arr.sort()
+      // console.log(arr.splice(1,2));
+      // console.log(arr.indexOf(1));
+      // console.log(arr.lastIndexOf(6,6));
+      // console.log(arr.reduce(function(p,c,i,array){
+      //   array[i + 1] ++;
+      //   return p + c;
+      // },10))
+      // console.log(arr.every(function(i){
+      //   return i > 2; 
+      // }))//false
+      // console.log(arr.some(function(i){
+      //   return i > 2; 
+      // }))//true
+      // console.log(arr.forEach(function(i){
+      //   return i > 2; 
+      // }))//undefined
+      // console.log(arr.map(function(i){
+      //   return i > 2; 
+      // }))//[false,false,true,true,true]
+      // console.log(arr.filter(function(i){
+      //   return i > 2; 
+      // }))//[3,4,5]
+      // var arr = [1,2,3,4].filter(function(i){
+      //   return i%2 !== 0;
+      // });
+      // console.log(arr)
+      Array.prototype.findIndex2 = function(){
+        var arr = this;
+        
+      }
+      // document.appendChild(nav);
+     </script>
+     <!-- <script type='text/javascript'>
+       //不同script标签中，共用一个window
+       console.log(window);
+     </script> -->
+  </body>
+</html>

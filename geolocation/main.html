@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>geolocation</title>
+    <style type="text/css">
+        body, html,#allmap{
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          margin:0;
+          font-family:"微软雅黑";
+        }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=f03wiauaj4flr4iDK1rzjNkuGPSgFBIY"></script>
+ </head>
+  <body>
+    <button type='button' onclick='getPosition()'>地理位置</button>
+    <div id="allmap"></div>
+    <script type="text/javascript">
+      function getPosition() {
+        window.navigator.geolocation.getCurrentPosition(showMap,showError)
+      }
+      //成功回调
+      function showMap(p) {
+          var x = p.coords.longitude,
+              y = p.coords.latitude;
+          var map= new BMap.Map('allmap');
+          //添加地图类型
+          map.addControl(new BMap.MapTypeControl({
+            mapTypes:[
+              BMAP_NORMAL_MAP,
+              BMAP_HYBRID_MAP
+            ]
+          }));
+          map.setCurrentCity('杭州');
+          //   滚动放大
+          map.enableScrollWheelZoom(true);
+          //   设置坐标
+          var gPoint= new BMap.Point(x,y);
+          var convert = new BMap.Convertor();
+          var ps = [];
+          ps.push(gPoint);
+          convert.translate(ps, 3,5, function(data){
+            var marker = new BMap.Marker(data.points[0]);
+            map.addOverlay(marker);
+            var label = new BMap.Label('智慧e谷',{
+              offset: new BMap.Size(20,-10)
+            })
+            marker.setLabel(label);
+            map.setCenter(data.points[0]);
+          });
+        }
+        //失败回调
+        function showError(e) {
+            console.log
+        }
+    </script>
+  </body>
+</html>

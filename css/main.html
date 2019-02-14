@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset='utf-8'>
+      <title>居中</title>
+      <style type="text/css">
+        /* @import url("../main.css"); */
+        .box{
+          width: 1000px;
+          text-align: center;
+        }
+        .box .content{
+          display: inline-block;
+          margin: 0 auto;
+          width: auto;
+        }
+        .container{
+          /* text-align: center; */
+          /* position: relative; */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .container ul{
+          /* display: inline; */
+          /* position: absolute; */
+          /* left: 50%; */
+          /* transform:translateX(-50%) */
+        }
+        
+        .font{
+          text-align: center;
+          display:table-cell;
+          vertical-align:middle;
+          height: 400px;
+        }
+        a:link {
+          color:#000;
+        }
+        a:visited{
+          color:red;
+        }
+        a:focus{
+          color:gray;
+        }
+        a:hover{
+            color:green;
+        }
+        a:active{
+            color:yellow;
+        }
+        span:first-letter{
+          color: red;
+        }
+        .img{
+          padding:20px;
+          background:red;
+          margin:50px;
+          border:4px solid green;
+        }
+        /* h1{font-size:24px;}
+        h2{font-size:18px;}
+        p{font-size:12px;}
+        h1,h2,p{margin-left: 1em;}
+        small{font-size: 0.5em;} */
+        html {
+          font-size:20px;
+        }
+        @media only screen and (min-width:401px) {
+          html {
+            font-size: 25px;
+          }
+        }
+        @media only screen and (min-width:429px) {
+          html {
+            font-size: 26.75px;
+          }
+        }
+        @media only screen and (min-width:481px) {
+          html {
+            font-size: 30px;
+          }
+        }
+        @media only screen and (min-width:569px) {
+          html {
+            font-size: 35.5px;
+          }
+        }
+        @media only screen and (min-width:641px) {
+          html {
+            font-size:40px;
+          }
+        }
+        button {
+          width: 6rem;
+          height: 3rem;
+          font-size: 0.5rem;
+          background:burlywood;
+        }
+      </style>
+  </head>
+  <body>
+    <!-- <div class="box"> -->
+    <!-- <table style="margin:0 auto;text-align: center;">
+        <tbody>
+            <tr>
+                <td>
+                  <div class="content">
+                    <div>12345678901234567890</div>
+                    <span>12345678901234567890</span>
+                    <span>12345678901234567890</span>
+                    <span>12345678901234567890</span>
+                    <span>12345678901234567890</span>
+                    <span>12345678901234567890</span>
+                  </div>
+                </td>
+            </tr>
+        </tbody>
+    </table> -->
+    <!-- </div> -->
+    <div class="container">
+        <ul>
+            <li>
+                <a href="https://www.cnblogs.com/respect2017/p/10154555.html" target="blank">djka;fjkda;fjkl</a>
+            </li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+        </ul>
+    </div>
+    <!-- <table>
+        <tbody>
+            <tr>
+                <td> -->
+                    <div class='font'>
+                        jfdka;jfkal;fjkalfjkalf;jkla;jfka;sjfkla;sfjksa;ljf;align-items
+                        <br>
+                        fjkafjkasjfkasjfjfkd
+                        <br>
+                        eioiepriu9032r[ujrigohriuqofhheriqpfjhq]
+                    </div>
+                <!-- </td>
+            </tr>
+        </tbody>
+   </table> -->
+   <!-- <div class="span">
+       dka;jfkd;ajf
+       <br>
+       fjdkajfdka;
+   </div> -->
+   <!-- <img src='http://h.hiphotos.baidu.com/image/pic/item/ca1349540923dd54e1964cb2dc09b3de9d824807.jpg' alt='tupian' class='img'> -->
+   <!-- <h1>Left<small>24px</small></h1>
+   <h2>Left<small>18px</small></h2>
+   <p>Left<small>12px</small></p> -->
+   <button type="button">确定</button>
+   <script type='text/javascript'>
+    //designWidth:设计稿的实际宽度值，需要根据实际设置
+    //maxWidth:制作稿的最大宽度值，需要根据实际设置
+    //这段js的最后面有两个参数记得要设置，一个为设计稿实际宽度，一个为制作稿最大宽度，例如设计稿为750，最大宽度为750，则为(750,750)
+    ;(function(designWidth, maxWidth) {
+        var doc = document,
+        win = window,
+        docEl = doc.documentElement,
+        remStyle = document.createElement("style"),
+        tid;
+
+        function refreshRem() {
+            var width = docEl.getBoundingClientRect().width;
+            maxWidth = maxWidth || 540;
+            width>maxWidth && (width=maxWidth);
+            var rem = width * 100 / designWidth;
+            remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+        }
+
+        if (docEl.firstElementChild) {
+            docEl.firstElementChild.appendChild(remStyle);
+        } else {
+            var wrap = doc.createElement("div");
+            wrap.appendChild(remStyle);
+            doc.write(wrap.innerHTML);
+            wrap = null;
+        }
+        //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+        refreshRem();
+
+        win.addEventListener("resize", function() {
+            clearTimeout(tid); //防止执行两次
+            tid = setTimeout(refreshRem, 300);
+        }, false);
+
+        win.addEventListener("pageshow", function(e) {
+            if (e.persisted) { // 浏览器后退的时候重新计算
+                clearTimeout(tid);
+                tid = setTimeout(refreshRem, 300);
+            }
+        }, false);
+
+        if (doc.readyState === "complete") {
+            doc.body.style.fontSize = "16px";
+        } else {
+            doc.addEventListener("DOMContentLoaded", function(e) {
+                doc.body.style.fontSize = "16px";
+            }, false);
+        }
+    })(750, 750);
+   </script>
+  </body>
+</html>
