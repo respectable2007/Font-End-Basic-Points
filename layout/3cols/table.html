@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <title>table</title>
+      <style type="text/css">
+        .parent {
+          display: table;
+          table-layout:fixed;
+          width:100%;
+        }
+        .left,.centerWrap,.right{
+          display: table-cell;
+        }
+        .left,.right{
+          width: 100px;
+          background: lightblue;
+        }
+        .center{
+          margin:0 20px;
+          background: lightcoral;
+        }
+      </style>
+  </head>
+  <body>
+      <div class="parent">
+          <div class="left">left</div>
+          <div class="centerWrap">
+              <div class="center">
+                  center
+              </div>
+          </div>
+          <div class="right">right</div>
+      </div>
+  </body>
+</html>

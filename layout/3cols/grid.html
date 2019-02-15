@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <title>grid</title>
+      <style type="text/css">
+        .parent {
+          display: grid;
+          grid-template-columns:100px 1fr 100px;
+          grid-gap:20px;
+        }
+        .left,.right{
+          background: lightblue;
+        }
+        .center{
+          background: lightcoral;
+        }
+      </style>
+  </head>
+  <body>
+      <div class="parent">
+          <div class="left">left</div>
+          <div class="center">center</div>
+          <div class="right">right</div>
+      </div>
+  </body>
+</html>
