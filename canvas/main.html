@@ -78,15 +78,15 @@
     // context.stroke();
 
     // 坐标转换
-    context.translate(200,50);
-    context.fillStyle = 'rgba(255,0,0,0.25)';
-    for(var i = 0; i < 50; i++ ) {
-        context.translate(25,25);
-        context.scale(0.9,0.9);
-        context.rotate(Math.PI/10);
-        // context.fillRect(0,0,100,50);
-        create5star();
-    }
+    // context.translate(200,50);
+    // context.fillStyle = 'rgba(255,0,0,0.25)';
+    // for(var i = 0; i < 50; i++ ) {
+    //     context.translate(25,25);
+    //     context.scale(0.9,0.9);
+    //     context.rotate(Math.PI/10);
+    //     // context.fillRect(0,0,100,50);
+    //     create5star();
+    // }
    
      function create5star(){
         var dx = 100,
@@ -96,7 +96,7 @@
             y,
             dig = Math.PI / 5 * 4;
         context.beginPath();
-        context.fillStyle = 'rgba(255,255,0,0.25)';
+        context.fillStyle = 'rgb(255,0,0)';
         for(var i = 0; i<5;i++) {
            x = Math.sin(i * dig);
            y = Math.cos(i * dig);
@@ -105,6 +105,39 @@
         context.fill();
         context.closePath();
      }
+
+
+    // 矩阵变换
+    // var color =  ['lightblue','red','orange','yellow','green','lightblue','blue','purple'];
+    // context.lineWidth = 10;
+    // for(var i = 0; i < 8; i++) {
+    //   // context.transform(1,0,0,1,0,10);
+    //   context.translate(0,10);
+    //   context.strokeStyle = color[7-i];
+    //   context.beginPath();
+    //   context.arc(200,150,100,0,Math.PI,true);
+    //   context.stroke();
+    // }
+
+    // 图形组合
+    // context.fillStyle = 'lightgray';
+    // context.fillRect(150,100,100,100);
+    // context.globalComposteOperate = 'lighter';
+    // context.beginPath();
+    // context.arc(250,200,50,0,2 * Math.PI,true);
+    // context.fillStyle = 'yellow';
+    // context.fill();
+    // context.closePath();
+
+    // 阴影效果
+    context.shadowOffsetX = 10;
+    context.shadowOffsetY = 10;
+    context.shadowColor = 'rgba(255,255,0,0.25)';
+    context.translate(0,50);
+    for(var i = 0; i < 3; i++) {
+      context.translate(50,50);
+      create5star();
+    }
     </script>
   </body>
 </html>
