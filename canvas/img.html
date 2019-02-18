@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>canvas+image</title>
+  </head>
+  <body>
+    <canvas id='canvas' width = '400' height='300'>
+    <script type="text/javascript">
+      var canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d'),
+          image = new Image();
+    //   image.width = '200px';
+    //   image.height = '150px';
+      image.src = 'http://f.hiphotos.baidu.com/image/pic/item/b151f8198618367a1f8c711423738bd4b21ce5f6.jpg';
+      function create5StarsClip(){
+        var dx = 100,
+        dy = 150,
+        x,
+        y,
+        deg = Math.PI/5 * 4,
+        s =50;
+        context.beginPath();
+        // context.translate(100,150);
+        // context.fillStyle = 'red';
+        for(var i = 0; i<5;i++){
+          x = Math.sin(i * deg);
+          y = Math.cos(i * deg);
+          context.lineTo(dx + x*s,dy+ y*s);
+        }
+        // context.fill();
+        // context.closePath();
+        context.clip();
+      }
+      image.onload = function() {
+
+        // 绘制或缩放图像
+        // context.drawImage(image,0,0,400,300);
+        // for(var i = 1;i <= 5; i++) {
+        //   context.drawImage(image,200,250,50,50,i * 25,i * 25,50,50);
+        // }
+        // context.drawImage(image,200,250,50,50,150,150,150,150);
+
+        // 图像平铺
+        // var p = context.createPattern(image,'repeat');
+        // context.fillStyle = p;
+        // context.fillRect(0,0,400,300);
+
+        // 图像裁剪
+        // create5StarsClip();
+        // context.drawImage(image,0,0,400,300);
+
+        // 像素处理
+        context.drawImage(image,0,0,400,300);
+        var imageData = context.getImageData(0,0,400,300),
+            len = imageData.data.length;
+        for(var i = 0; i < len ; i+=4) {
+            imageData.data[i] = 255 - imageData.data[i];//r
+            imageData.data[i + 1] = 255 - imageData.data[i + 1];//g
+            imageData.data[i + 2] = 255 - imageData.data[i + 2];//b
+        }
+        context.putImageData(imageData,0,0);
+      }
+      
+    </script>
+  </body>
+</html>
