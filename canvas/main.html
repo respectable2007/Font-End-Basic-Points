@@ -120,14 +120,14 @@
     // }
 
     // 图形组合
-    // context.fillStyle = 'lightgray';
-    // context.fillRect(150,100,100,100);
-    // context.globalComposteOperate = 'lighter';
-    // context.beginPath();
-    // context.arc(250,200,50,0,2 * Math.PI,true);
-    // context.fillStyle = 'yellow';
-    // context.fill();
-    // context.closePath();
+    context.fillStyle = 'lightgray';
+    context.fillRect(150,100,100,100);
+    context.globalComposteOperation = 'lighter';
+    context.beginPath();
+    context.arc(250,200,50,0,2 * Math.PI,true);
+    context.fillStyle = 'yellow';
+    context.fill();
+    context.closePath();
 
     // 阴影效果
     // context.shadowOffsetX = 10;
@@ -138,6 +138,7 @@
     //   context.translate(50,50);
     //   create5star();
     // }
+    window.location = canvas.toDataURL('image/jpeg');
     </script>
   </body>
 </html>

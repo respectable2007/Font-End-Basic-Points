@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      动画
+    </title>
+    <style type="text/css">
+     .container{
+        background:lightblue;
+        width:400px;
+     }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <canvas id = 'c' width="400" height="300">
+    </div>
+    <script type="text/javascript">
+      var c = document.getElementById('c'),
+          con = c.getContext('2d'),
+          i = 0;
+          con.fillStyle = 'red';
+          con.fillRect(0,100,100,100);
+          var a = setInterval(function(){
+            con.clearRect(0,0,400,300);
+            con.fillStyle = 'red';
+            con.fillRect(i,100,100,100);
+            i+=20;
+          },100);
+          if (i > 400) {
+            clearInterval(a);
+          }
+    </script>
+  </body>
+</html>
