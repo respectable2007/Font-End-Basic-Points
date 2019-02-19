@@ -22,31 +22,59 @@
     </script>
     <script type="text/javascript">
      var g = document.getElementById('g'),
-         vertex = document.getElementById('vertexShader').text,
-         frag = document.getElementById('fragmentShader').text;
+         // 提取着色器代码
+         vertexGlsl = document.getElementById('vertexShader').text,
+         fragmentGlsl = document.getElementById('fragmentShader').text;
      if(g.getContext) {
-        var gl = g.getContext('experimental-webgl');
+        var gl = g.getContext('webgl');
          if(gl) {
-           gl.clearColor(0,0,0,1);
-           gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.clearColor(0.0, 0.0, 0.0, 1.0);
+            gl.clear(gl.COLOR_BUFFER_BIT);
            //视口
-           gl.viewPort(0,0,g.width,g.height);
+           gl.viewport(0,0,g.width,g.height);
            //缓冲区
            var buffer = gl.createBuffer();
            gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0,0.5,1]),gl.STATIC_DRAW);
            //着色器
-           vShader = gl.createShader(gl.VERTEX_SHADER);
-           fShader = gl.createShader(gl.FRAGMENT_SHADER);
-           gl.shaderSource(vShader,vertexGlsl);
-           gl.compileShader(vShader);
-           gl.shaderSource(fShader,fragmentGlsl);
-           gl.compileShader(fShader);
-           var program = gl.createProgram();
-           gl.attachShader(program,vShader);
-           gl.attachShader(program,fShader);
-           gl.linkProgram(program);
-           gl.useProgram(program);
+        //    vShader = gl.createShader(gl.VERTEX_SHADER);
+        //    fShader = gl.createShader(gl.FRAGMENT_SHADER);
+
+        //    gl.shaderSource(vShader,vertexGlsl);
+        //    gl.compileShader(vShader);
+        //    gl.shaderSource(fShader,fragmentGlsl);
+        //    gl.compileShader(fShader);
+
+        //    var program = gl.createProgram();
+        //    gl.attachShader(program,vShader);
+        //    gl.attachShader(program,fShader);
+        //    gl.linkProgram(program);
+        //    gl.useProgram(program);
+
+        //    var vertex = gl.getAttribLocation(program,'aVertexPosition');//aVertexPosition内存的位置
+        //    gl.enableVertexAttribArray(vertex);//启用
+        //    gl.vertexAttribPointer(vertex,itemSize,gl.FLOAT,false,0,0);//创建指针，指向gl的缓冲区
+
+        //    var uColor = gl.getUniformLocation(program,'uColor');//uColor在内存中的位置
+        //    gl.uniform4fv(uColor,[0,0,0,1]);//赋值
+
+        //    console.log(gl.getShaderInfoLog(vShader))
+        //    console.log(gl.getShaderParammeter(vShader,gl.COMPILE_STATUS))
+        //    console.log(gl.getProgramInfoLog(program))
+        //    console.log(gl.getProgramParammeter(program,gl.LINK_STATUS))
+
+           var texture = gl.createTexture(),
+               img = new Image();
+           img.onload = function() {
+            gl.bindTexture(gl.TEXTURE_2D, texture);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+            gl.generateMipmap(gl.TEXTURE_2D);
+            gl.bindTexture(gl.TEXTURE_2D, null);
+           }
+           img.src = 'sample.jpg';
+
          } else {
             alert('not support webgl')
          }
