@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>webGL</title>
+  </head>
+  <body>
+     <canvas id='g' width='400' height='300'>
+    <!--顶点着色器-->
+    <script type='x-webgl/x-vertex-shader' id='vertexShader'>
+    attribute vec2 aVertexPosition;
+    void main() {
+      gl_Position = vec4(aVertexPosition,0.0,1.0);
+    }
+    </script>
+    <!--片段着色器-->
+    <script type='x-webgl/x-fragment-shader' id='fragmentShader'>
+    uniform vec4 uColor;
+    void main() {
+      gl_FragColor = uColor;
+    }
+    </script>
+    <script type="text/javascript">
+     var g = document.getElementById('g'),
+         vertex = document.getElementById('vertexShader').text,
+         frag = document.getElementById('fragmentShader').text;
+     if(g.getContext) {
+        var gl = g.getContext('experimental-webgl');
+         if(gl) {
+           gl.clearColor(0,0,0,1);
+           gl.clear(gl.COLOR_BUFFER_BIT);
+           //视口
+           gl.viewPort(0,0,g.width,g.height);
+           //缓冲区
+           var buffer = gl.createBuffer();
+           gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+           gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0,0.5,1]),gl.STATIC_DRAW);
+           //着色器
+           vShader = gl.createShader(gl.VERTEX_SHADER);
+           fShader = gl.createShader(gl.FRAGMENT_SHADER);
+           gl.shaderSource(vShader,vertexGlsl);
+           gl.compileShader(vShader);
+           gl.shaderSource(fShader,fragmentGlsl);
+           gl.compileShader(fShader);
+           var program = gl.createProgram();
+           gl.attachShader(program,vShader);
+           gl.attachShader(program,fShader);
+           gl.linkProgram(program);
+           gl.useProgram(program);
+         } else {
+            alert('not support webgl')
+         }
+     }else {
+        alert('not support canvas')         
+     }
+     
+    </script>
+  </body>
+</html>
