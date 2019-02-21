@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .svg{
+        transform: rotate(-90deg);
+    }
+    .t1{
+        stroke-dashoffset:0px;
+        animation: donut-show-one linear 5s forwards;
+    }
+    @keyframes donut-show-one {
+        from{
+        stroke-dashoffset: 0px;
+        }
+        to {
+        stroke-dashoffset: -565.2px;
+      }
+    }
+    </style>
+</head>
+<body>
+    <svg width="300px" height="300px" class="svg">
+        <circle id="donut-graph" class="t2" r="90" cy="150" cx="150" stroke-width="8" stroke="green" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+        <circle id="donut-graph" class="t1" r="90" cy="150" cx="150" stroke-width="8" stroke="gray" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-dasharray="565.2" />  
+    </svg>
+</body>
+</html>

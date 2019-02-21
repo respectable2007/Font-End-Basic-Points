@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>饼图</title>
+  </head>
+  <body>
+    <canvas id='canvas' width="100" height='100'></canvas>
+    <script type="text/javascript">
+     (function(doc,wind){
+        var canvas = doc.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            colors = ['red','orange','yellow','green','lightblue','blue','purple'],
+            data = [25,5,10,15,10,25,20],
+            lens = data.length;
+        if (!context) {
+          console.log('not support canvas');
+        } else {
+          var x0 = 50,
+              y0 = 50,
+              r = 50,
+              pi = Math.PI;
+              tpi = Math.PI * 2,
+              deg = 0,
+              start = 0,
+              end = 0;
+          for(var i = 0; i < lens; i++){
+            end += (data[i] / 100) * tpi;
+            context.fillStyle = colors[i];
+            context.beginPath();
+            // 扇形
+            context.moveTo(x0, y0);
+            context.arc(x0,y0,r,start,end,false);
+            context.fill();
+            context.closePath();
+            start = end;
+          }
+        }
+     })(document,window);
+    </script>
+  </body>
+</html>

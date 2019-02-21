@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>热力图???</title>
+  </head>
+  <body>
+    <svg id='heatmap' width='400' height='200' xmls='http://www.w3.org/2000/svg'>
+      <!-- <line x1="0" y1="200" x2="400" y2="200" style="stroke:black;stroke-width:1;"></line> -->
+    </svg>
+    <script type='text/javascript'>
+     (function(svg,doc,win){
+       console.log(svg);
+       var line = document.createElementNS('http://http://www.w3.org/2000/svg','line');
+       line.setAttribute('x1','0');
+       line.setAttribute('y1','200');
+       line.setAttribute('x2','400');
+       line.setAttribute('y2','200');
+       line.setAttribute('style','stroke:black;stroke-width:1;');
+       svg.rootElement.appendChild(line);
+     })(document.getElementById('heatmap'),document,window);
+    </script>
+  </body>
+</html>
