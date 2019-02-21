@@ -23,5 +23,38 @@
     <polygon points='470 0,420 100,520 100' style='stroke-width:2;stroke:lightblue;fill:lightcoral;'></polygon>
     <polyline points='570 0,520 100,620 100' style='stroke-width:2;stroke:lightblue;fill:lightcoral;'></polyline>
   </svg>
+  <!-- <iframe id='iframe' src='main.svg'></iframe> -->
+  <!-- <object class="svgClass" id="svgObject" data="main.svg" type="image/svg+xml" height="500" width="500"> -->
+    <canvas id='canvas' width="200" height="200"></canvas>
+  <script type="text/javascript">
+    // 获取DOM
+    // iframe
+    // var iframe = document.getElementById('iframe');
+    // console.log(iframe.contentWindow.document);
+    // iframe.onload = function() {
+    //   var domSvg = document.getElementById('iframe').contentDocument;
+    //   console.log(domSvg);
+    // }
+
+    // object
+    // var object = document.getElementById('svgObject');
+    // object.addEventListener('load',function(){
+    //   var oSvg = object.getSVGDocument();
+    //   console.log(oSvg);
+    // })
+    // SVG转为Canvas
+    var img = new Image();
+    var svg = new Blob(['<svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" style="fill:lightcoral;"/></svg>'], {type: "image/svg+xml;charset=utf-8"});
+    console.log(self);
+    var DOMURL = self.URL || self.webkitURL || self;
+    var url = DOMURL.createObjectURL(svg);
+    img.src = url;
+    img.onload = function () {
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+    };
+
+  </script>
 </body>
 </html>
