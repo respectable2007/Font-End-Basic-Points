@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>定位</title>
+    <style type="text/css">
+      *{
+          margin:0;
+          padding:0;
+      }
+      /* 相对定位 */
+      .p{
+        position: relative;
+        background:lightcoral;
+        width:100px;
+        height:100px;
+      }
+      .p1{
+        position: relative;
+        background: lightblue;
+        width: 100px;
+        height: 100px;
+        left:20px;
+      }
+      .p2{
+        position: relative;
+        background: lightgreen;
+        width: 100px;
+        height: 100px;
+      }
+      /* 绝对定位 */
+      .c{
+        /* position:static; */
+        position:relative;
+        margin:20px;
+        border:1px solid red;
+      }
+      .cp{
+        position:absolute;/*因为.c没有定位，所以.cp相对于body进行绝对定位*/
+        top:20px;
+      }
+
+      /* 固定定位 */
+      .f{
+        position:fixed;
+        background:lightseagreen;
+        height: 30px;
+        top: 900px;
+      }
+    </style>
+  </head>
+  <body>
+    <span class="p">sample
+    </span>
+    <span class="p1">smaple
+    </span>
+    <span class="p2">smaple
+    </span>
+    <div class="c">div+sample
+        <span class="cp">sample
+        </span>
+    </div>
+    <div class="f">sample</div>
+  </body>
+</html>
