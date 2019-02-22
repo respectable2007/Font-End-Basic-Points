@@ -47,6 +47,31 @@
         height: 30px;
         top: 900px;
       }
+
+      /* 粘性定位 */
+      body{
+        height: 1000px;
+        overflow-y: scroll;
+      }
+      .s{
+        position:sticky;
+        background:lawngreen;
+        height: 30px;
+        top: 30px;
+      }
+      .par,.children{
+        position: absolute;
+      }
+      .par{
+        margin: 40px;
+        border:1px solid red;
+        padding: 20px;
+        background:lightcoral;
+      }
+      .children{
+        top: 20px;
+        margin: 5px;
+      }
     </style>
   </head>
   <body>
@@ -61,5 +86,10 @@
         </span>
     </div>
     <div class="f">sample</div>
+    <div class="s">sample</div>
+    <div class="par">
+        parent
+        <div class="children">children</div>
+    </div>
   </body>
 </html>
