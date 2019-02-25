@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>径向渐变</title>
+    <style type="text/css">
+    *{
+      margin: 0;
+      padding: 0;
+    }
+      .container1{
+        height: 200px;
+        background: -o-radial-gradient(rgba(255,0,0,1),rgba(255,0,0,0));
+        background:-moz-radial-gradient(rgba(255,0,0,1),rgba(255,0,0,0));
+        background:-webkit-radial-gradient(rgba(255,0,0,1),rgba(255,0,0,0));
+        background: radial-gradient(rgba(255,0,0,1),rgba(255,0,0,0));
+      }
+      .container2{
+        height: 200px;
+        background: -o-radial-gradient(circle closest-side at center,rgba(255,0,0,1),rgba(255,0,0,0));
+        background:-moz-radial-gradient(circle closest-side at center,rgba(255,0,0,1),rgba(255,0,0,0));
+        background:-webkit-radial-gradient(circle closest-side at center,rgba(255,0,0,1),rgba(255,0,0,0));
+        background: radial-gradient(circle closest-side at center,rgba(255,0,0,1),rgba(255,0,0,0));
+      }
+      .container3{
+        height: 200px;
+        background: -o-radial-gradient(circle farthest-side at center,rgba(255,0,0,1),rgba(255,0,0,0));
+        background:-moz-radial-gradient(circle farthest-side at center,rgba(255,0,0,1),rgba(255,0,0,0));
+        background:-webkit-radial-gradient(circle farthest-side at center,rgba(255,0,0,1),rgba(255,0,0,0));
+        background: radial-gradient(circle farthest-side at center,rgba(255,0,0,1),rgba(255,0,0,0));
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container1">
+    </div>
+    <div class="container2">
+    </div>
+    <div class="container3">
+    </div>
+  </body>
+</html>
