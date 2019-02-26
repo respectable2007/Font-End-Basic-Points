@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>target选择器</title>
+    <style type="text/css">
+      h2:nth-child(even){
+        background:lightcoral;
+      }
+      h2:nth-child(odd){
+        background:limegreen;
+      }
+      h2:nth-of-type(even){
+        background:lightcoral;
+      }
+      h2:nth-last-of-type(odd){
+        background:lawngreen;
+      }
+      h3:only-child{
+        background:red;
+      }
+      h2:only-child{
+        background:red;
+      }
+      h3:nth-child(1):nth-last-child(1){
+        background: blue;
+      }
+      h3:only-of-type{
+        background: lightgray;
+      }
+      h2:only-of-type{
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div>
+      <h2>h1</h2>
+      <p>ren2</p>
+      <h2>h3</h2>
+      <p>ren4</p>
+      <h2>h5</h2>
+      <p>ren6</p>
+    </div> -->
+    <div>
+        <h3>renren</h3>
+        <h2>renren</h2>
+    </div>
+  </body>
+</html>
