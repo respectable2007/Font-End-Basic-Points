@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>box-shadow</title>
+    <style type="text/css">
+      *{
+        margin:0;
+        padding:0;
+      }
+      div{
+        margin: 20px;
+      }
+      .shadow{
+        height: 100px;
+        width: 100px;
+        border:2px solid lightcoral;
+        background: lightgreen;
+        box-shadow: 10px 10px 10px gray;
+      }
+      .shadow1{
+        height: 100px;
+        width: 100px;
+        border:2px solid lightcoral;
+        background: lightgreen;
+        box-shadow: 10px 10px 0 gray;
+      }
+      .shadow2{
+        height: 100px;
+        width: 100px;
+        border:2px solid lightcoral;
+        background: lightgreen;
+        box-shadow: 0 0 10px red;
+      }
+      .shadow3{
+        height: 100px;
+        width: 100px;
+        border:2px solid lightcoral;
+        background: lightgreen;
+        box-shadow: -10px -10px 5px red;
+      }
+      .shadow4{
+        border:2px solid lightcoral;
+        background: lightgreen;
+        box-shadow: 10px 10px 5px red, -10px -10px 5px red,;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shadow">shadow</div>
+    <div class="shadow1">shadow</div>
+    <div class="shadow2">shadow</div>
+    <div class="shadow3">shadow</div>
+    <span class="shadow4">shadow</span>
+  </body>
+</html>
