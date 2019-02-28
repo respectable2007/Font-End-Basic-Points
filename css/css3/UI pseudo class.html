@@ -44,11 +44,14 @@
       p::selection{
         background:lightcoral;
       }
+      form ~ p{
+        border:1px dotted lightgreen;
+      }
     </style>
   </head>
   <body>
     <form>
-      <p>
+      <p class="a">
         姓名：<input type='text' disabled>
       </p>
       <p>
