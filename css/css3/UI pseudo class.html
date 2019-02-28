@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>UI元素状态伪类选择器</title>
+    <style type="text/css">
+      input{
+        outline: none; 
+      }      
+      /* 鼠标悬停 */
+      input[type='text']:hover{
+        border:1px solid red;
+      }
+      /* 按下没松开 */
+      input[type='text']:active{
+        border:1px solid green;
+      }
+      /* 获取焦点 */
+      input[type='text']:focus{
+        border:1px solid blue;
+      }
+      input[type='text']:enabled{
+        /* background:purple; */
+      }
+      
+      input[type='text']:read-write{
+        background:purple;
+      }
+      input[type='text']:-moz-read-write{
+        background:purple;
+      }
+      input[type='text']:disabled{
+        background:gray;
+      }
+      input[type='checkbox']:checked{
+        outline:1px solid blue;
+      }
+      input[type='checkbox']:default{
+        outline:1px solid black;
+      }
+      input[type='radio']:indeterminate{
+        outline:1px solid red;
+      }
+      p::selection{
+        background:lightcoral;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <p>
+        姓名：<input type='text' disabled>
+      </p>
+      <p>
+        地址：<input type='text'>
+      </p>
+      兴趣：
+      <input type='checkbox' checked>阅读
+      <input type='checkbox'>旅游
+      <input type='checkbox'>上网
+      <input type='checkbox'>看电影
+    </form>
+    <form>
+        性别：
+        <input type='radio' name='sex'>male
+        <input type='radio' name='sex'>female
+    </form>
+    <p>fjdkfjklafjklsafj</p>
+  </body>
+</html>
