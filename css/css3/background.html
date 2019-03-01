@@ -14,7 +14,7 @@
         border:10px solid lightcoral;
         background:lightblue;
         /* background-image: url(http://a.hiphotos.baidu.com/image/pic/item/728da9773912b31bc8107b1a8818367adab4e181.jpg); */
-        background-image: url(sample.jpg);
+        background-image: url(../sample.jpg);
         /* background-repeat: repeat-y; */
         /* background-repeat: no-repeat; */
         /* background-position: center center; */
@@ -29,7 +29,7 @@
       .bg1{
         border:10px solid lightgreen;
         background:lightblue;
-        background-image: url(sample.jpg);
+        background-image: url(../sample.jpg);
         background-position: center center;
         height: 200px;
         background-repeat: no-repeat;
@@ -38,19 +38,19 @@
       }
       .span{
         color:red;
-        background:url(sample.jpg);
+        background:url(../sample.jpg);
       }
       .clip1{
         background:lightcoral;
         border:10px dotted lightblue;
         height: 100px;
-        background-image: url(sample.jpg);
+        background-image: url(../sample.jpg);
         background-clip: border-box;
       }
       .clip2{
         background:lightgray;
         border:10px dotted lightgreen;
-        background-image: url(sample.jpg);
+        background-image: url(../sample.jpg);
         height: 100px;
         background-clip: padding-box;
       }
@@ -61,7 +61,7 @@
         border:10px dotted lightcoral;
         background-origin: border-box;
         /* background-image: url(sample.jpg); */
-        background-repeat: ;
+        /* background-repeat: ; */
       }
       .origin2{
         width:400px;
@@ -79,6 +79,16 @@
         /* background-image: url(sample.jpg); */
         background-origin: content-box;
       }
+      .origin4{
+        width:400px;
+        height:400px;
+        padding:20px;
+        border:10px dotted lightcoral;
+        background-image: url(../sample.jpg);
+        background-origin: content-box;
+        -moz-background-inline-policy: continuous;
+        background-break: continuous;
+      }
     </style>
   </head>
   <body>
@@ -89,6 +99,7 @@
     <div class="clip2"></div>
     <div class="origin1"></div>
     <div class="origin2"></div>
-    <div class="origin3">contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>
+    <div class="origin3">contentcontentcontentcontentcontent contentcontentcontentcontentcontentcontentcontent</div>
+    <div class="origin4">contentcontentcontentcontentcontent contentcontentcontentcontentcontentcontentcontent</div>
   </body>
 </html>

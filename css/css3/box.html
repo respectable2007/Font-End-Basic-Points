@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>box</title>
+    <style type="text/css">
+     .a,.b{
+      float: left;
+      width: 400px;
+      word-wrap:break-word;
+     }
+     .a{
+        height: 400px;
+        background: lightblue;
+     }
+     .b{
+        height: 200px;
+        background: lightcoral;
+     }
+     .c{
+       text-overflow: ellipsis;
+       white-space: nowrap;
+       overflow: hidden;
+       width: 400px;
+       background: lightgreen;
+       clear: both;
+     }
+    </style>
+  </head>
+  <body>
+      <div class="a">
+         1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+      </div>
+      <div class="b">
+         2BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+      </div>
+      <div class="c">
+         3CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+      </div>
+  </body>
+</html>
