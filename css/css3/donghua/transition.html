@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>transitions</title>
+    <style type="text/css">
+      .t{
+        margin:10px;
+        width:200px;
+        height: 100px;
+        background: white;
+        transition: background-color 5s ease 2s;
+        border:1px solid gray;
+      }
+      .t:hover{
+        background: lightcoral;
+      }
+      .a{
+        width:100px;
+        height:100px;
+        border:1px solid gray;
+      }
+      @-webkit-keyframes my{
+        40%{
+          background-color:orange;
+        }
+        60%{
+          background-color:green;
+        }
+        80%{
+          background-color:blue;
+        } 
+      }
+      @keyframes my{
+        40%{
+          background-color:orange;
+        }
+        60%{
+          background-color:green;
+        }
+        80%{
+          background-color:blue;
+        }
+      }
+      .a:hover{
+        -webkit-animation:my 10s linear 3s 2 alternate;
+        animation: my 10s linear 3s 2 alternate;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="t"></div>
+    <div class="a"></div>
+  </body>
+</html>
