@@ -9,11 +9,22 @@
         width:200px;
         height: 100px;
         background: white;
-        transition: background-color 5s ease 2s;
+        transition: background-color 2s ease,height 2s ease-in ;
         border:1px solid gray;
       }
       .t:hover{
         background: lightcoral;
+        height: 200px;
+      }
+      .t2{
+        width:200px;
+        height:100px;
+        border:1px solid gray;
+        display:none;
+        transition: display 2s ease;
+      }
+      .t2:hover{
+        display: block;
       }
       .a{
         width:100px;
@@ -50,6 +61,15 @@
   </head>
   <body>
     <div class="t"></div>
+    <div class="t2"></div>
     <div class="a"></div>
+    <script type='text/javascript'>
+      var t = document.getElementsByClassName('t')[0];
+      // console.log(t.style);
+      t.addEventListener('transitionend',function(){
+        t.style.backgroundColor = 'green';
+        alert('transition finished!');
+      })
+    </script>
   </body>
 </html>
