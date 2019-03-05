@@ -1,5 +1,9 @@
 /* index.css */
+.red {
+  color:red;
+}
 .header {
+    composes: red;
     font-size: 32px;
 }
 .title {
