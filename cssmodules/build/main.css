@@ -1,0 +1,16 @@
+/* index.css */
+.index__header--1heNG {
+    font-size: 32px;
+}
+.index__title--3si9t {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 20px;
+}
