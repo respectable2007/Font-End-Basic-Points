@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <meta charset="utf-8">
       <title>icon</title>
       <style type='text/css'>
         @font-face {
@@ -12,7 +13,7 @@
         [class^="icon-"], [class*=" icon-"] {
           font-family: 'icon' !important;
         }
-        .icon-home:before {
+        .icon-home:after {
           content: "\e901";
         }
         /* 引用本地字体 */
@@ -25,10 +26,56 @@
           font-family: local;
           font-size: 20px;
         }
+        .text{
+          display: table;
+          table-layout: fixed;
+          width: 100%;
+        }
+        .fonts{
+          display:table-cell;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .text1{
+          width: 100%;
+          position: relative;
+        }
+        .clearfix:after{
+          content:'.';
+          height: 0;
+          visibility: hidden;
+          display:block;
+          clear: both;
+        }
+        .fonts1{
+          float: left;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          max-width: 100%;
+        }
+        .icon{
+          position:absolute;
+          top:0;
+        }
       </style>
   </head>
   <body>
-    <span class="icon-home"></span>
-    <span>让我们一起摇摆，嗨！！！</span>
+    <!-- <span class="icon-home"></span> -->
+    <div class="text icon-home">
+      <span class="fonts">
+        让我们一起摇摆，嗨！！！让我们一起摇摆，嗨！！！让我们一起摇摆，嗨！！！让我们一起摇摆，嗨！！！
+        让我们一起摇摆，嗨！！！让我们一起摇摆，嗨！！！让我们一起摇摆，嗨！！！让我们一起摇摆，嗨！！！
+        让我们一起摇摆，嗨！！！让我们一起摇摆，嗨！！！让我们一起摇摆，嗨！！！让我们一起摇摆，嗨！！！
+      </span>
+      <!-- <span class="icon-home"></span> -->
+    </div>
+    <div class="text1 clearfix">
+      <span class="fonts1">
+        让我们一起摇摆，嗨！！！
+      </span>
+      <span class="icon icon-home"></span>
+    </div>
   </body>
 </html>
