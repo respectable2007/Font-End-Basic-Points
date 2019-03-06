@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+      *{margin:0;padding: 0;}
+      html{
+        font-size: 20px;
+      }
+      .item{
+        list-style:none;
+        display:block;
+        width: 16rem;
+        height: 13rem;
+        border:1px solid #e1e1e1;
+        margin:10px 0;
+      }
+      .item img{
+        width:100%;
+        height: 100%;        
+        object-fit: contain;
+      }
+      @media only screen and (max-width:641px){
+        html{
+          font-size: 40px;
+        }
+      }
+      @media only screen and (max-width:569px){
+        html{
+          font-size: 35.5px;
+        }
+      }
+      @media only screen and (max-width:481px){
+        html{
+          font-size: 30px;
+        }
+      }
+      @media only screen and (max-width:421px){
+        html{
+          font-size: 26.25px;
+        }
+      }
+      @media only screen and (max-width:401px){
+        html{
+          font-size: 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+      <ul class="list"></ul>
+      <script type="text/javascript">
+        ;(function(doc,win){
+           var list = doc.getElementsByClassName('list')[0],
+               srcs = ['https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2045707946,633878799&fm=26&gp=0.jpg',
+                 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2293478121,2613905977&fm=26&gp=0.jpg',
+                 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551868604927&di=29add382cbacd51ead92fc551d2be6ff&imgtype=0&src=http%3A%2F%2Fwww.th-gas.com%2Fimages%2Fobuwgmjoo5uw4nbqgayc4y3pnu%2Fwallpaper%2F1%2F548126645f3fa.jpg',
+                 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551868604927&di=3fe96a49e5a6bcd2c28b395e82cabcc8&imgtype=0&src=http%3A%2F%2Fpic34.nipic.com%2F20131025%2F2623009_140242263104_2.jpg',
+                 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551868711449&di=424a69256c14fe86fc36e51a41ef92c5&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F94b806a490c04b002afba698e81bb9e22c0ed260.jpg',
+                 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3870438404,3142360890&fm=11&gp=0.jpg'
+               ],
+               lens = srcs.length,
+               frag = doc.createDocumentFragment();
+            for(var i = 0; i < lens; i++) {
+              var img = doc.createElement('img'),
+                  item = doc.createElement('li');
+              img.src = srcs[i];
+              item.setAttribute('class','item');
+              item.appendChild(img);
+              frag.appendChild(item);
+            }
+            list.appendChild(frag)               ;
+        })(document,window);
+      </script>
+  </body>
+</html>
