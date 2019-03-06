@@ -19,10 +19,58 @@
         font-size: 40px;
         transform: skew(20deg,40deg);
       }
+      .border{
+        position: relative;
+      }
+      .border div{
+        position:absolute;
+      }
+      .border-wei{
+        background: lightcoral;
+        width: 20px;
+        height: 20px;
+        transform-origin: right bottom 0;
+        transition: transform 5s linear;
+      }
+      .border-heng{
+        background:lightblue;
+        width: 100px;
+        height: 100px;
+        border-radius: 50% 50%;
+        top: 10px;
+        left: 10px;
+      }
+      /* .clearfix:after{
+        content: '.';
+        height: 0;
+        display: block;
+        visibility: hidden;
+        clear: both;
+      } */
     </style>
   </head>
   <body>
     <div class="t"></div>
-    <div class="t1">我们是默默无闻的人</div>
+    <!-- <div class="t1">我们是默默无闻的人</div> -->
+    <div class="border">
+      <div class="border-wei"></div>
+      <div class="border-heng"></div>
+    </div>
+    <script type="text/javascript">
+      // 计算半径60px圆任意点的坐标
+      var deg = 0,
+          x = 0,
+          y = 0,
+          cx = 60,
+          cy = 60,
+          wei = document.getElementsByClassName('border-wei')[0],
+          heng = document.getElementsByClassName('border-heng')[0];
+      wei.style.transform = 'translate(50px,-10px)';
+      for(var i = 0; i < 360; i++) {
+       x = cx + 60 * Math.cos(i) + 'px';
+       y = cy + 60 * Math.sin(i) + 'px';
+       wei.style.transform = 'translate(' + x + ',' + y + ')';
+      }
+    </script>
   </body>
 </html>
