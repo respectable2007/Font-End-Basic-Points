@@ -9,22 +9,37 @@ module.exports = {
     path: path.resolve(__dirname, 'build')
   },
   module: {
-    rules: [{
-      test: /\.css$/,
-      use: [
-        { loader: miniCssExtractPlugin.loader,
-          options: {
-            publicPath: './build/style'
-          } 
-        },
-        { loader: 'css-loader',
-          options: {
-            modules: true,//开启css modules功能
-            localIdentName: '[name]__[local]--[hash:base64:5]'
-          }
+    rules: [
+     {
+      test: /\.scss$/,
+      exclude: path.resolve(__dirname, 'src/style'),
+      use:[{
+        loader:'style-loader'
+      },{
+        loader:'css-loader',
+        options:{
+          modules: true,
+          localIdentName:'[name]__[local]--[hash:base64:5]'
         }
-      ]
-    },{
+      },{
+        loader:'sass'
+      }]
+    }, {
+      test: /\.scss$/,
+      include: path.resolve(__dirname, 'src/style'),
+      use:[{
+        loader:'style-loader'
+      },{
+        loader:'css-loader',
+        options:{
+          modules: true,
+          localIdentName:'[name]__[local]--[hash:base64:5]'
+        }
+      },{
+        loader:'sass-loader'
+      }]
+    },
+    {
       test: /\.js$/,
       exclude: /(node_modules)/,
       use: [{
