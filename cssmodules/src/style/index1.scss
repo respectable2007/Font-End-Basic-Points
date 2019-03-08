@@ -1,0 +1,12 @@
+/* index.css */
+.red {
+    color:green;
+}
+.header {
+    composes: red;
+    font-size: 32px;
+}
+.title {
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+}
