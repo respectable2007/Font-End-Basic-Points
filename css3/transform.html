@@ -29,24 +29,18 @@
         background: lightcoral;
         width: 20px;
         height: 20px;
-        transform-origin: right bottom 0;
+        transform-origin: center bottom 0;
+        -webkit-transform: translate(50px,-20px);
+        transform: translate(50px,-20px);
         transition: transform 5s linear;
       }
       .border-heng{
-        background:lightblue;
-        width: 100px;
-        height: 100px;
+        background:transparent;
+        border:1px solid #efefef;
+        width: 120px;
+        height: 120px;
         border-radius: 50% 50%;
-        top: 10px;
-        left: 10px;
       }
-      /* .clearfix:after{
-        content: '.';
-        height: 0;
-        display: block;
-        visibility: hidden;
-        clear: both;
-      } */
       .pos{
         transform:translateX(40px);
         border:1px solid red;
@@ -57,15 +51,15 @@
   <body>
     <div class="t"></div>
     <!-- <div class="t1">我们是默默无闻的人</div> -->
-    <!-- <div class="border">
-      <div class="border-wei"></div>
-      <div class="border-heng"></div>
-    </div> -->
     <p>
       <span class="pos" onclick="alert('1');">sample</span>
       <span >sample2</span>
     </p>
-    <!-- <script type="text/javascript">
+    <div class="border">
+      <div class="border-wei"></div>
+      <div class="border-heng"></div>
+    </div>
+    <script type="text/javascript">
       // 计算半径60px圆任意点的坐标
       var deg = 0,
           x = 0,
@@ -73,13 +67,25 @@
           cx = 60,
           cy = 60,
           wei = document.getElementsByClassName('border-wei')[0],
-          heng = document.getElementsByClassName('border-heng')[0];
-      wei.style.transform = 'translate(50px,-10px)';
-      for(var i = 0; i < 360; i++) {
-       x = cx + 60 * Math.cos(i) + 'px';
-       y = cy + 60 * Math.sin(i) + 'px';
-       wei.style.transform = 'translate(' + x + ',' + y + ')';
-      }
-    </script> -->
+          heng = document.getElementsByClassName('border-heng')[0],
+          sheet = document.styleSheets[0],
+          rules = sheet.cssRules || sheet.rules,
+          rule = rules[0];
+      // for(var i = 0; i < 360; i++) {
+        i = 180;
+        var j = i/360 * Math.PI * 2;
+        x = cx + 60 * Math.cos(j) + 'px';
+        y = cy + 60 * Math.sin(j) + 'px';
+        // wei.style.transition = 'transform 5s linear';
+        rule.style.cssText += '.change{transform:translate(' + x + ',' + y + ');}';
+        wei.className += ' change';
+        // setTimeout(function(x,y){
+        //   alert('1');
+        //   // wei.style.transform = 'rotate('+ j +') translate(' + x + ',' + y + ')';
+        //   wei.style.transform = 'translate(' + x + ',' + y + ')';
+        // },1000);
+        // wei.style.transform = 'rotate('+ j +') translate(' + x + ',' + y + ')';
+      // }
+    </script>
   </body>
 </html>
