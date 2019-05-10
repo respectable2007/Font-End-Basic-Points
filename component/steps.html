@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>步骤条</title>
+    <style type='text/css'>
+      .active{
+        color:red
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button id='statusChange'>下一步</button>
+    </div>
+    <script type="text/template" id="steps">
+        <div class="steps">
+           <ul>
+             <li >等待</li>
+             <li>面试中</li>
+             <li>面试结束</li>
+           </ul>
+        </div>
+    </script>
+    <script type='text/javascript' src='steps.js'></script>
+    <script type="text/javascript">
+      var data = {
+          tmpId: 'steps',
+          active: 0
+        }, 
+        mySteps = new Steps(data);
+      document.getElementById('statusChange').addEventListener('click', function() {
+        data.active ++;
+        var steps = document.getElementsByClassName('steps')[0],
+            lis = steps.getElementsByTagName('li');
+        for(var i = 0, lens = lis.length; i < lens; i++) {
+            lis[i].className = '';
+        }
+        lis[data.active].className = 'active';
+      },false)
+    </script>
+  </body>
+</html>
