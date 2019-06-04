@@ -66,6 +66,7 @@
      </span> 
      <mark>11111</mark>
      <meter></meter>
+	 <button type='button' id='btn'>事件啊事件</button>
      <script type='text/javascript'>
        "use strict";
        window.t = 1;
@@ -397,21 +398,173 @@
       //   return i%2 !== 0;
       // });
       // console.log(arr)
-      Array.prototype.findIndex2 = function(){
-        var arr = this;
-        
-      }
+      
       // document.appendChild(nav);
 	  var camelizeRe = /-(\w)/g;
 	  var str = 'my-name';
-	  console.log(cam
-	  elizeRe.exec(str));
+	  console.log(camelizeRe.exec(str));
 	  console.log(camelizeRe.exec(str));
      </script>
-     <!-- <script type='text/javascript'>
+     <script type='text/javascript'>
        //不同script标签中，共用一个window
        console.log(window);
-     </script> -->
+     </script>
+	 <script type='text/javascript'>
+       Array.prototype.findIndex2 = function() {
+	     var args = arguments,
+		     lens = args.length,
+			 arr = this,
+			 arrLens = arr.length,
+			 toString = Object.prototype.toString,
+			 rel = -1;
+		
+		if(lens === 0 || toString.call(args[0]) !== '[object Function]') {
+		  return;
+		} else {
+		  var fn = args[0];
+		  if(lens == 1 || toString.call(args[1]) !== '[object Object]'){
+		    for(var i = 0; i < arrLens; i++) {
+			  rel = fn(arr[i], i, arr);
+			  if(rel) {
+			    return i;
+			  }
+			}
+			return -1;
+		  } else {
+		    for(var i = 0; i < arrLens; i++) {
+			  rel = fn.call(args[1],arr[i], i, arr);
+			  if(rel) {
+			    return i;
+			  }
+			}
+			return -1;
+		  }
+		}
+	   }
+	   var i = [0].findIndex2(function (value , index , arr) {
+        return Object.is(NaN, value);
+	   })
+       console.log(i)
+     </script>
+     <script type='text/javascript'>
+	   var a = [[1, 2], 3, 4];
+	   var b = [[1, 2], 3, 4];
+	   console.log(JSON.stringify(a) === JSON.stringify(b));
+	   
+	   var numbers = [1,2,3,4,5]
+	   var mapRel = numbers.map(function(value){
+	     return value * 2
+	   })
+	   console.log(mapRel);
+	   function flaten(arr) {
+   	    while(arr.some((item) => Array.isArray(item))){
+		  arr = [].concat(...arr)
+		}
+		return arr;
+	   }
+       console.log(flaten([1,2,[3,[4]]]))
+	   Array.prototype.reverse2 = function(start, end){
+	      if(start < 0) {
+            start = 0;
+		  }
+		  var lens = this.length;
+		  if(end >= lens ){
+		    end = lens - 1;
+		  }
+	     for(start,end; start < end; start++, end--){
+		   var a = this[start],
+		       b = this[end];
+		   a = a + b;
+		   b = a - b;
+		   a = a - b;
+		   this[start] = a;
+		   this[end] = b;
+		 }
+		 return this;
+	   }
+	   console.log([1, 2, 3, 4].reverse2(2,3));
+	 </script>
+	 <script type='text/javascript'>
+	   setTimeout(function(){
+	     console.log(this)//windows对象
+	   },0);
+	   (function(){
+	     setTimeout(function(){
+	       console.log(this)//windows对象
+	     },0)
+	   })()
+	   /*document.getElementById('a').onclick = function(){
+	     setTimeout(function(){
+	       console.log(this)//windows对象
+	     },0);
+	   }*/
+	   
+       for(var i = 0; i <= 5; i ++){
+	     (function(i){
+		  setTimeout(function(){
+			console.log(i)
+		  }, i * 1000)
+		 })(i)
+	   }
 
+	 </script>
+	 <script type='text/javascript'>
+	  /*var list = document.getElementsByTagName('li');
+	   for(var i = 0; i < list.length; i++) {
+		  list[i].addEventListener('click', function(e) {
+			alert(i);
+	     },false)
+       }*/
+	 </script>
+	 <script type='text/javascript'>
+	   var element = document.getElementById('a'),
+	       start = null;
+	   element.style.position = 'absolute';
+	   element.style.backgroundColor = 'green';
+	   function step(timestamp){
+	     if(!start) {
+		   start = timestamp;
+		 }
+		 var lens = timestamp - start;
+		 element.style.left = Math.min(lens/10, 200) + 'px';
+		 if(lens < 2000) {
+		   requestAnimationFrame(step);
+		 }
+	   }
+	   requestAnimationFrame(step);
+	   element.style.backgroundColor = 'red';
+       //IE9-不支持，兼容性
+	   if(!window.requestAnimationFrame) {
+	     var lastTime = 0;
+	     window.requestAnimationFrame = function(callback){
+		   var now = (new Date()).getTime();
+		   var nextTime = Math.max(lastTime + 16.7, now);   
+		   return setTimeout(function(){
+			     callback(lastTime = nextTime);
+			   },16.7);
+		 }
+		 window.cancelAnimationFrame = function(id){
+		   clearTimeout(id);
+		 }
+	   }
+	 </script>
+	 <script type='text/javascript'>
+	   var btn = document.getElementById('btn');
+	   btn.onclick = function(e) {
+	     console.log(e.currentTarget === this);
+	     console.log(e.currentTarget === e.target);
+	   }
+	   document.body.onclick = function(e) {
+	     console.log(e.currentTarget);
+		 console.log(e.target)
+	   }
+	   var doms = document.getElementsByTagName('*'),
+	       lenss = doms.length,
+		   str = '';
+	   for(var i = 0; i < lenss; i++) {
+	     str += doms[i].tagName + ':' + doms[i].sourceIndex + '\n';
+	   }
+	   console.log(str);
+	 </script>
   </body>
 </html>
