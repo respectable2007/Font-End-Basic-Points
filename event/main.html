@@ -10,6 +10,9 @@
 	  Parent
 	  <div id='b'>Child</div>
 	</div>
+	<div >
+	  <input type='text' id='txt'>
+	</div>
 	<script type='text/javascript'>
 	  var node = document.getElementsByTagName('*');
 	  var d = document.getElementById('d');
@@ -87,6 +90,29 @@
 	  event.addEvent(c,'click',function(){
 	    console.log('cc')
 	  }, true)
+	  //模拟鼠标事件
+	  //非IE
+	  var event1 = document.createEvent('MouseEvents');
+	  event1.initMouseEvent('click',true,false,document.defualtView,0,0,0,0,0,false,false,false,false,0,null);
+	  c.dispatchEvent(event1);
+	  //模拟键盘事件
+	  //KeyboardEvent构造函数
+	  var txt = document.getElementById('txt'),
+	      evt = new KeyboardEvent('keyup');
+	  txt.addEventListener('keyup', function(){
+	    console.log('txt');
+	  })
+	  txt.dispatchEvent(evt);
+	  //自定义DOM事件
+	  //CustomEvent构造函数
+	  var evt1 = new CustomEvent('cat',{
+	    bubbles: true,
+		cancelable: false,
+		detail:123456})
+	  c.addEventListener('cat', function(){
+	    console.log('cat');
+	  })
+	  c.dispatchEvent(evt1);
 	</script>
   </body>
 </html>
