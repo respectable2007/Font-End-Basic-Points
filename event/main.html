@@ -6,6 +6,10 @@
   </head>
   <body>
     <div id='d'>dsdsdsds</div>
+	<div id='c'>
+	  Parent
+	  <div id='b'>Child</div>
+	</div>
 	<script type='text/javascript'>
 	  var node = document.getElementsByTagName('*');
 	  var d = document.getElementById('d');
@@ -25,6 +29,19 @@
 	    console.log('mousedown');
 	  }, false)
 	  var events = typeof getEventListeners == 'function' && getEventListeners(d)
+	  
+	  var c = document.getElementById('c'),
+	      b = document.getElementById('b')
+		  body = document.body;
+	  c.addEventListener('click', function(){
+	    console.log('c')
+	  })
+	  b.addEventListener('click', function(e){
+	    console.log(e)
+	  })
+	  body.addEventListener('click', function(){
+	    console.log('body');
+	  })
 	</script>
   </body>
 </html>
