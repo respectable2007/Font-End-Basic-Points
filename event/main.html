@@ -90,7 +90,7 @@
 	  event.addEvent(c,'click',function(){
 	    console.log('cc')
 	  }, true)
-	  //模拟鼠标事件
+	  /*//模拟鼠标事件
 	  //非IE
 	  var event1 = document.createEvent('MouseEvents');
 	  event1.initMouseEvent('click',true,false,document.defualtView,0,0,0,0,0,false,false,false,false,0,null);
@@ -112,7 +112,20 @@
 	  c.addEventListener('cat', function(){
 	    console.log('cat');
 	  })
-	  c.dispatchEvent(evt1);
+	  c.dispatchEvent(evt1);*/
+	  var txt = document.getElementById('txt');
+	  txt.addEventListener('mousedown',function(){
+	    console.log(1)
+	  })
+	  txt.addEventListener('focus',function(){
+	    console.log(2)
+	  })
+	  txt.addEventListener('mouseup',function(){
+	    console.log(3)
+	  })
+	  txt.addEventListener('click',function(){
+	    console.log(4)
+	  })
 	</script>
   </body>
 </html>
