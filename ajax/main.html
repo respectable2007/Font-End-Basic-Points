@@ -5,6 +5,8 @@
 	<title>ajax</title>
   </head>
   <body>
+    <input type='file' id='file'>
+	<img id='img' width='200px'>
     <script type='text/javascript'>
 	  function ajax(){
 	    var obj = Object.assign({
@@ -53,6 +55,18 @@
 		  xhr.send(serialize(data));
 		}
 		return xhr;
+	  }
+	  var file = document.getElementById('file');
+	  file.onchange = function(e){
+	    console.log(file);
+		var reader = new FileReader();
+		    file = e.target.files,
+			img = document.getElementById('img');
+		reader.readAsDataURL(file[0]);
+		reader.onload = function(){
+		  console.log(reader.result);
+		  img.src = reader.result;
+		}
 	  }
 	</script>
   </body>
