@@ -67,6 +67,14 @@
      <mark>11111</mark>
      <meter></meter>
 	 <button type='button' id='btn'>事件啊事件</button>
+	 <div id="link-box">
+	  <!-- 注意 href 属性值，链接后面加了一个换行 -->
+	  <a href="http://hcysun.me
+	  ">aaaa</a>
+	  <!-- 注意 href 属性值，链接后面加了一个Tab -->
+	  <a href="http://hcysun.me	">bbbb</a>
+	 </div>
+
      <script type='text/javascript'>
        "use strict";
        window.t = 1;
@@ -565,6 +573,14 @@
 	     str += doms[i].tagName + ':' + doms[i].sourceIndex + '\n';
 	   }
 	   console.log(str);
+	 </script>
+	 <script type='text/javascript'>
+	   console.log(undefined === undefined)
+	   var watchers = [0,1,2,3,4];
+	   watchers.splice(4,0,'ren');
+	   console.log(watchers);
+	   
+	   console.log(document.getElementById('link-box').innerHTML)
 	 </script>
   </body>
 </html>
