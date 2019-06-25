@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>String API</title>
+  </head>
+  <body>
+    <script type='text/javascript'>
+	  var str1 = 'a',
+	      str2 = str1.concat('1',2,3,4,5),//a12345
+		  str3 = str1.concat([1,2,3,4,5]),//a1,2,3,4,5
+		  str4 = str1.concat({b:'b'}),//a[object Object]
+		  str5 = 'at,bat,cat,dat,eat',
+		  str6 = str5.replace(/(at)/g,'word($1)'),//word(at),bword(at),cword(at),dword(at),eword(at)
+		  str7 = str5.replace(/(at)/g, function(...match) {
+		    /*
+			["at", "at", 0, "at,bat,cat,dat,eat"]
+            ["at", "at", 4, "at,bat,cat,dat,eat"]
+            ["at", "at", 8, "at,bat,cat,dat,eat"]
+            ["at", "at", 12, "at,bat,cat,dat,eat"]
+            ["at", "at", 16, "at,bat,cat,dat,eat"]
+			*/
+		    console.log(match)
+		  }),
+		  matched = str5.match(/at/),//["at", index: 0, input: "at,bat,cat,dat,eat", groups: undefined]
+		  /*以除了逗号外任意数任意字符为分隔符*/
+		  matched1 = str5.split(/[^\,]+/);//["", ",", ",", ",", ",", ""]
+	  console.log(str6);
+	  console.log(matched1);
+    </script>
+  </body>
+</html>
