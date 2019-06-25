@@ -453,6 +453,14 @@
         return Object.is(NaN, value);
 	   })
        console.log(i)
+	   Array.prototype.map2 = function(fn) {
+	     return this.reduce(function(keys, m) {
+		   return keys.concat(fn(m))
+		 }, [])
+	   }
+	   console.log([1,2,3,4].map2(function(i){
+	     return i * 2;
+	   }))
      </script>
      <script type='text/javascript'>
 	   var a = [[1, 2], 3, 4];
