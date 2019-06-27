@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+	<title>DOM</title>
+  </head>
+  <body>
+    <div id='dom' >sample</div>
+    <script type='text/javascript'>
+	  var dom = document.getElementById('dom');
+	  console.log(dom.className)
+	  function addClass(element, name) {
+	    if(!element || ((name !== 0) && !name)) return;
+		if(element.className) {
+		  element.className += ' ' + name;
+		} else if(element.getAttribute){
+		  var classname = element.getAttribute('class');
+		  element.setAttribute('class', (classname === null ? '' : classname)+ ' ' + name)
+		}
+	  }
+	  addClass(dom, 'sample')
+	  addClass(dom, 'DIV')
+	</script>
+  </body>
+</html>

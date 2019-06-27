@@ -24,8 +24,19 @@
 		  matched = str5.match(/at/),//["at", index: 0, input: "at,bat,cat,dat,eat", groups: undefined]
 		  /*以除了逗号外任意数任意字符为分隔符*/
 		  matched1 = str5.split(/[^\,]+/);//["", ",", ",", ",", ",", ""]
-	  console.log(str6);
-	  console.log(matched1);
+	      console.log(str6);
+	      console.log(matched1);
+	  //(010)111111转为010-111111
+	   var str8 = '(010)111111',
+       str1= str8.replace(/^(\(\d{3}\))/g, function(match){
+	     return match.slice(1, match.length - 1) + '-';
+	   });
+	   console.log(str1)
+	  //找到字符串中连续的数字并输出成正数形式
+	  var str9 = '01.1abc111ef90g0000';
+	  str9.replace(/(\d+(\.?)\d+)/g, function(match){
+	    console.log(parseFloat(match))
+	  })
     </script>
   </body>
 </html>

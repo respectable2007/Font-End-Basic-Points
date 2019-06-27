@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>继承</title>
+  </head>
+  <body>
+    <script type='text/javascript'>
+	  //不使用构造函数和class实现继承
+	  function object(o){
+	    var newo = new Object();
+	    if(o === null) return newo;
+		for(var i in o) {
+		  console.log(i)
+		  if(o.hasOwnProperty(i)) {
+		    newo[i] = o[i]
+		  } else {
+		    Object.prototype[i] = o[i]
+		  }
+		}
+		return newo;
+	  }
+	  function createOther(original) {
+	    var clone = object(original);
+		return clone;
+	  }
+    </script>
+  </body>
+</html>
