@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>setTimeout setInterval</title>
+	<style type='text/css'>
+	  html, body{height: 100%;display:block;}
+	  html, body, div{margin: 0;top:0;}
+	  .top{
+	    height: 48px;
+		border: 1px solid green;
+		width: 100%;
+	  }
+	  .body{
+	    background: gray;
+		height:100%;
+		display:block;
+	  }
+	  .nav_fixed {
+	    position:fixed;
+		top:0;
+	  }
+	</style>
+  </head>
+  <body>
+  <div class='top'>header</div>
+  <div class='body'>body</div>
+  <script type="text/javascript">
+  window.onload = function(){
+    var top = document.getElementsByClassName('top')[0],
+	    body = document.getElementsByClassName('body')[0];
+	document.onscroll = function() {
+	  var dis = document.body.scrollTop || document.documentElement.scrollTop;
+	  	console.log(dis,top.offsetTop);
+	  if(dis > top.offsetTop){
+	    if(top.className.indexOf(' nav_fixed') < 0) {
+		 top.className += ' nav_fixed';
+		}
+		body.style.marginTop = dis + 50 +'px';
+	  } else {
+	    top.className = top.className.replace(' nav_fixed', '');
+		body.style.marginTop = '0px';
+	  }
+	}
+  }
+  </script>
+  </body>
+</html>

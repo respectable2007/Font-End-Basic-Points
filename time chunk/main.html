@@ -2,10 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>分时函数</title>
+    <title>setTimeout setInterval</title>
   </head>
   <body>
   <script type="text/javascript">
+  //分时函数
     var arr = [];
     for(var i = 9999;i >= 0;i--){
       arr.push(i);
@@ -32,7 +33,25 @@
       element.innerHTML = arguments[0];
       document.body.appendChild(element);
     },10);
-    time();
+    //time();
+	//写一个函数每隔5秒调用它自身，总共调用100次（100次后停止），要求可以自定义调用次数和延时时间。
+	function call(num, timer) {
+	 var i = 0,
+	     interval;
+	 return function callSelf() {
+	   console.log(Date.now())
+	   i ++;
+	  interval = setTimeout(function(){
+	    if( i >= num) {
+		  clearTimeout(interval);
+		} else {
+		  callSelf();
+		}  
+	  }, timer)
+	 }
+	}
+	var caller = call(5, 5000);
+	caller();
   </script>
   </body>
 </html>

@@ -7,6 +7,7 @@
   <body>
     <div id='dom' >sample</div>
     <script type='text/javascript'>
+	  //为dom元素添加class
 	  var dom = document.getElementById('dom');
 	  console.log(dom.className)
 	  function addClass(element, name) {
@@ -18,8 +19,39 @@
 		  element.setAttribute('class', (classname === null ? '' : classname)+ ' ' + name)
 		}
 	  }
-	  addClass(dom, 'sample')
-	  addClass(dom, 'DIV')
+	  //addClass(dom, 'sample')
+	  //addClass(dom, 'DIV')
+	  //模拟jQuery的addClass
+	  function addClass(elms, value) {
+	    var lens = elms.length;
+		if(typeof value === 'function') {
+		  for(var i = 0; i < lens; i++) {
+		    addClass(elms[i], value.call(elms[i], i, elms[i].className))
+		  }
+		} else if(typeof value === 'string') {
+		  //要添加类名
+		  var match = value.match(/(\S+)/g);
+		  for(var m = 0; m < lens; m++){
+		    var cur = elms[m].nodeType === 1 && (elms[m].className + ' '),
+			    clazz = '',
+				n = 0;
+			if(cur) {
+			  while(clazz = match[n++]) {
+			    //去重
+			   if(cur.indexOf(' ' + clazz + ' ') < 0) {
+			     cur += clazz + ' '
+			   }
+			  }
+			}
+			cur = cur.trim();
+			if(elms[m].className !== cur) {
+			  elms[m].className = cur;
+			}
+		  }
+		}
+		return elms;
+	  }
+	  addClass([dom], 'sample DIV')
 	</script>
   </body>
 </html>
