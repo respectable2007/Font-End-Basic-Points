@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>setTimeout setInterval</title>
+    <title>工具</title>
   </head>
   <body>
   <script type="text/javascript">
@@ -36,7 +36,7 @@
 	//zimuNum('As of Saturday,')
 	//设计一个函数，实现随机分配红包，输入红包总额，和红包个数，输出每个红包额 
 	function randomHongBao(sum, num) {
-	  //总额精确到两位数
+	  //总额精确到两位数，JS浮点数计算不精确，*100，整数计算
 	  var max = sum * 100,
 	      arr = [],
 		  i = 0,

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>拖放</title>
+    <style type="text/css">
+      html,body,div{margin:0;padding:0;}
+      .container{display: inline-block;border:1px solid gray;border-radius: 5px; width: 300px; height: 300px;vertical-align: top;}
+      .item{
+        width: 280px;
+        height: 28px;
+        background:#EED2EE;
+        border: 1px solid #efefef;
+        border-radius: 5px;
+        margin-top: 16px;
+        margin-left: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item" draggable="true">A</div>
+      <div class="item" draggable="true">B</div>
+      <div class="item" draggable="true">C</div>
+      <div class="item" draggable="true">D</div>
+      <div class="item" draggable="true">E</div>
+      <div class="item" draggable="true">F</div>
+    </div>
+    <div class="container"></div>
+    <div class="container"></div>
+    <script type="text/javascript">
+      var doms = document.getElementsByClassName('container'),
+          items = document.getElementsByClassName('item'),
+          moveCur = null;
+      /* 拖动目标 */
+      function addHandler(elms, event, fn) {
+        var lens = elms.length,
+            i = 0;
+        for(i; i < lens; i++) {
+          elms[i]['on' + event] = fn;
+        }
+      }
+      /* 放置目标 */
+      function dragTargetOver(e) {
+          e.preventDefault();
+      }
+      function dragTargetEnter(e) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'copy';
+      }
+      function dragTargetDrop(e) {
+          e.preventDefault();
+          e.target.appendChild(moveCur);
+      }
+      function dragStart(e) {
+        e.preventDefault();
+        e.dataTransfer.effectAllowed = 'copy';
+      }
+      function drag(e) {
+        e.preventDefault();
+        moveCur = e.target;
+      }
+      /* 拖动元素绑定拖放事件 */
+      addHandler(items, 'dragStart', dragStart)
+      addHandler(items, 'drag', drag)
+      /* 放置目标绑定拖放事件 */
+      addHandler(doms, 'dragover', dragTargetOver)
+      addHandler(doms, 'dragenter', dragTargetEnter)
+      addHandler(doms, 'drop', dragTargetDrop)
+    </script>
+  </body>
+</html>
