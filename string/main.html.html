@@ -37,6 +37,10 @@
 	  str9.replace(/(\d+(\.?)\d+)/g, function(match){
 	    console.log(parseFloat(match))
 	  })
+	  //统计字符串中单词出现个数
+	  console.log('111As111 of Saturday, Huawei has received 28 contracts from Europe, 11 from the Middle East, six from the,'.match(/\b[^\d_]\w+[^\d_]\b/g))
+	  //将字符串'abCdEFg'改写为ab.cd.e.fg
+	  'abCdEFg'.replace(/([A-Z])/g, '.$1').toLocaleLowerCase()
     </script>
   </body>
 </html>

@@ -51,7 +51,27 @@
 	 }
 	}
 	var caller = call(5, 5000);
-	caller();
+	//caller();
+	//实现函数A()，多次调用输出1，2，1，2。。。
+	function output(){
+	  var t = 2,
+	      arr = [];
+	  return function(){
+	    if(t == 2){
+		  arr.push(1);
+		  t = 1;
+		} else {
+		  arr.push(2);
+		  t = 2;
+		}
+		console.log(arr.join())
+	  }
+	}
+	var out = output();
+	out()
+    out()
+    out()
+	out()
   </script>
   </body>
 </html>

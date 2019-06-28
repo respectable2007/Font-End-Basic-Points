@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>setTimeout setInterval</title>
+  </head>
+  <body>
+  <script type="text/javascript">
+    //大整数加法
+    function sumStrings(a,b){
+		var res='', c=0;
+		a = a.split('');
+		b = b.split('');
+		while (a.length || b.length || c){
+			c += ~~a.pop() + ~~b.pop();
+			res = c % 10 + res;
+			c = c>9;
+		}
+		return res.replace(/^0+/,'');
+	}
+	//console.log(sumStrings('123456','9999999999999999'))
+	//计算字符串中每个字符出现次数的函数
+	function zimuNum(string) {
+	  var lens = string.length,
+	      i = 0,
+		  res = {},
+		  zimu = '';
+	  if(lens === 0) return;
+	  for(i; i < lens; i++) {
+        zimu = string[i];
+		res[zimu] = string.match(new RegExp(zimu, 'g')).length;
+		string.replace(new RegExp(zimu, 'g'), '');
+	  }
+	  return res;
+	}
+	//zimuNum('As of Saturday,')
+	//设计一个函数，实现随机分配红包，输入红包总额，和红包个数，输出每个红包额 
+	function randomHongBao(sum, num) {
+	  //总额精确到两位数
+	  var max = sum * 100,
+	      arr = [],
+		  i = 0,
+		  item = 0;
+      for(i; i < num - 1; i++) {
+		item = Math.floor(Math.random() *(max - 2) + 1);
+		arr.push(!(item/100) ? 0.01: (item/100));
+		max -= item;
+	  }
+	  arr.push(max/100);
+	  return arr.join();
+	}
+  </script>
+  </body>
+</html>

@@ -13,9 +13,21 @@
 	<div >
 	  <input type='text' id='txt'>
 	</div>
+	<div class='list'>
+	  <ul id='list'>
+		<li>a</li>
+		<li>b</li>
+		<li>c</li>
+		<li>d</li>
+		<li>e</li>
+	  </ul>
+	</div>
 	<script type='text/javascript'>
 	  var node = document.getElementsByTagName('*');
 	  var d = document.getElementById('d');
+	  /* 一个dom节点绑定多个相同事件，其执行顺序按绑定的顺序执行。
+	    onclick为冒泡事件
+	 */
 	  d.addEventListener('click',function(){
 	    alert();
 	  },false);
@@ -33,9 +45,9 @@
 	  }, false)
 	  var events = typeof getEventListeners == 'function' && getEventListeners(d)
 	  
-	  var c = document.getElementById('c'),
-	      b = document.getElementById('b')
-		  body = document.body;
+	  var c = document.getElementById('c'),//父级
+	      b = document.getElementById('b')//子级
+		  body = document.body;//顶级
 	  c.addEventListener('click', function(){
 	    console.log('c')
 	  })
@@ -45,6 +57,7 @@
 	  body.addEventListener('click', function(){
 	    console.log('body');
 	  })
+	  /* 封装事件 */
 	  var event = {
 	    addEvent:function(element,type,fn,useCapture){
 		  useCapture = typeof useCapture === 'undefined' ? false : true
@@ -87,6 +100,7 @@
 		  }
 		}
 	  }
+	  /* c节点及其子节点，触发点击事件，c节点事件处理程序在捕获阶段被调用 */
 	  event.addEvent(c,'click',function(){
 	    console.log('cc')
 	  }, true)
@@ -126,6 +140,11 @@
 	  })
 	  txt.addEventListener('click',function(){
 	    console.log(4)
+	  })
+	  /* 实现一个列表点击，弹出列表的内容 */
+	  var list = document.getElementById('list');
+	  list.addEventListener('click', function(e) {
+		console.log(e.target.innerHTML)
 	  })
 	</script>
   </body>
