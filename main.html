@@ -533,38 +533,6 @@
        }*/
 	 </script>
 	 <script type='text/javascript'>
-	   var element = document.getElementById('a'),
-	       start = null;
-	   element.style.position = 'absolute';
-	   element.style.backgroundColor = 'green';
-	   function step(timestamp){
-	     if(!start) {
-		   start = timestamp;
-		 }
-		 var lens = timestamp - start;
-		 element.style.left = Math.min(lens/10, 200) + 'px';
-		 if(lens < 2000) {
-		   requestAnimationFrame(step);
-		 }
-	   }
-	   requestAnimationFrame(step);
-	   element.style.backgroundColor = 'red';
-       //IE9-不支持，兼容性
-	   if(!window.requestAnimationFrame) {
-	     var lastTime = 0;
-	     window.requestAnimationFrame = function(callback){
-		   var now = (new Date()).getTime();
-		   var nextTime = Math.max(lastTime + 16.7, now);   
-		   return setTimeout(function(){
-			     callback(lastTime = nextTime);
-			   },16.7);
-		 }
-		 window.cancelAnimationFrame = function(id){
-		   clearTimeout(id);
-		 }
-	   }
-	 </script>
-	 <script type='text/javascript'>
 	   var btn = document.getElementById('btn');
 	   btn.onclick = function(e) {
 	     console.log(e.currentTarget === this);

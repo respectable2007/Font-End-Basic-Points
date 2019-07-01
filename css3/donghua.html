@@ -25,7 +25,7 @@
       }
       .t2:hover{
         display: block;
-      }
+      }  
       .a{
         width:100px;
         height:100px;
@@ -57,12 +57,53 @@
         -webkit-animation:my 10s linear 3s 2 alternate;
         animation: my 10s linear 3s 2 alternate;
       }
+      @keyframes ball {
+        0%{
+          left: 0px;
+          margin: 0px;
+        }
+        50%{
+          left: 50%;
+        }
+        100%{
+          left: 100%;
+          margin-left: -50px;
+        }
+      }
+      @-webkit-keyframes ball {
+        0%{
+          left: 0px;
+          margin: 0px;
+        }
+        50%{
+          left: 50%;
+        }
+        100%{
+          left: 100%;
+          margin-left: -50px;
+        }
+      }
+      .ball-container{
+        position: relative;
+      }
+      .ball{
+        width: 50px;
+        height: 50px;
+        background: gray;
+        border-radius: 50%;
+        position: absolute;
+        animation: ball 5s linear 0s infinite alternate;
+        -webkit-animation: ball 5s linear 0s infinite alternate;
+      }
     </style>
   </head>
   <body>
     <div class="t"></div>
     <div class="t2"></div>
     <div class="a"></div>
+    <div class="ball-container">
+        <div class="ball"></div>
+    </div>
     <script type='text/javascript'>
       var t = document.getElementsByClassName('t')[0];
       // console.log(t.style);
