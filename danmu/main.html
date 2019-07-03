@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>弹幕</title>
+    <style type="text/css">
+      html,body,div{margin:0;padding:0;}
+      .screen{
+        width: 320px;
+        height: 500px;
+        background-image: url(static/timg.jpg);
+        background-position: center center;
+        background-repeat: no-repeat no-repeat;
+        position: relative;
+        border:1px solid black;
+        overflow: hidden;
+      }
+      .danmu{
+        height: 60%;
+        width: 100%;
+      }
+      .input{
+        margin-top: 46%;
+        margin-left: 16%;
+        height: 28px;;
+      }
+      .input input{
+        background: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        height: 24px;
+      }
+      .input button{
+        border:none;
+        background: #fff;
+        height: 100%;
+      }
+      .item {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="screen">
+      <div class="danmu"></div>
+      <div class="input">
+        <input type="text" id='txt'>
+        <button type="button" id='fashe'>发射</button>
+      </div>
+    </div>
+    <script type="text/javascript">
+     (function(document,window) {
+      var btn = document.getElementById('fashe'),
+          container = document.getElementsByClassName('danmu')[0],
+          txt = document.getElementById('txt'),
+          data = ['弹幕', '666', '233333333', 'javascript', 'html', 'css', '前端框架', 'Vue', 'React', 'Angular',
+                 '测试弹幕效果']
+          i = 0
+          lens = data.length;
+      if(!window.requestAnimationFrame) {
+        var last = 0;
+        window.requestAnimationFrame = function(fn) {
+        /* 获取最准确的时间 */
+         var now = (new Date()).getTime(),
+             next = Math.max(last + 16.67 , now);
+         return setTimeout(function() {
+            fn(last = next);
+          }, 16.67);
+        }
+      }
+      /* 动画 */
+      function shoot(text) {
+        if(text === '') return;
+        var div = document.createElement('div'),
+            a = Math.floor(Math.random() * 256),
+            b = Math.floor(Math.random() * 256),
+            c = Math.floor(Math.random() * 256);
+        div.className = 'item';
+        div.innerHTML = text;
+        div.style.left = 50 + '%';
+        div.style.top = Math.random().toFixed(2) * 100 + 'px';
+        div.style.color = `rgb(${a},${b},${c})`;
+        div.style.wordBreak = 'keep-all';
+        container.appendChild(div);
+        let w = -Math.floor(div.getBoundingClientRect().width);
+        let call = function() {
+          let left = div.offsetLeft;
+          if( left - 3 >= w) {
+            div.style.left = (left - 3) + 'px';
+          } else {
+            div.style.left = 320 + 'px';
+          }
+          requestAnimationFrame(call);
+        }
+        call()
+      }
+      btn.addEventListener('click', function() {
+        data.push(txt.value);
+        shoot(txt.value);
+      })
+      for(i; i < lens; i++) {
+        shoot(data[i])
+      }
+     }(document, window))
+    </script>
+  </body>
+</html>
