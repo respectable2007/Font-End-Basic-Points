@@ -8,6 +8,16 @@
     <script type="text/javascript">
       /* 本地文件因不存在域名，因此cookie为空 */
       console.log(document.cookie)
+      /* 写入cookie */
+      document.cookie = encodeURIComponent('test') + '='
+                        + encodeURIComponent('juanjuan');
+      /* 读取cookie */
+      console.log(document.cookie)              
+	  /* encodeURIComponent */
+	  console.log(decodeURIComponent('%23%24%26%2B%5E%60%7C'))
+	  console.log(new Date().setMilliseconds(123456))
+	  var arr = [1];
+	  console.log(arr.join('='))
     </script>
   </body>
 </html>
