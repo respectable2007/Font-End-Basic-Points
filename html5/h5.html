@@ -18,6 +18,10 @@
       <input type='month'>
       <input type='week'>
       <input type='color'>
+	  <div>
+	    <input type='file' id='file' multiple>
+		<p id='con'></p>
+	  </div>
       <script type='text/javascript'>
         var vue = {},
 		config = {
@@ -51,8 +55,34 @@
 		  console.log('instance');
 		}
 		var vue = new Vue();
-		/*vue没有继承Vue的静态属性，只是继承了实例属性和方法*/
+		/*vue没有继承Vue的静态属性，只是继承了实例属性和方法；
+		  静态属性和方法只能通过构造函数调用和访问
+		*/
 		console.log(vue.option)
+		
+		let input = document.getElementById('file'),
+		    p = document.getElementById('con');
+		input.addEventListener('change', function(e){
+		  let file = e.target.files[0],
+		      size = file.size,
+			  type = file.type,
+			  blob,
+			  reader = new FileReader();
+		  p.innerHTML = '长度：' + size + '；文件类型：' + type;
+		  //文件拆分
+		  blob = file.slice(0, 101);
+		  if(blob){
+		    reader.readAsText(file);
+			reader.onerror = function(){
+			  console.log('read error');
+			}
+			reader.onload = function() {
+			  console.log(reader.result);
+			}
+		  } else {
+		    console.log('nodata');
+		  }
+		})
       </script>
   </body>
 </html>
