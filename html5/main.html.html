@@ -23,44 +23,8 @@
 		<p id='con'></p>
 	  </div>
 	  <script type='text/javascript' src='spark-md5.min.js'></script>
-      <script type='text/javascript'>
-        var vue = {},
-		config = {
-		  performance:false
-		};
-		/*在访问器属性getter内声明的变量均为只读，
-		  若访问器getter内返回的对象（configX）在内部声明，
-		  则configX的属性均为只读；
-		  若访问器getter内返回的对象（config）在外部已声明，
-		  则可通过定义了getter的属性（configM）读取和写入config属性
-		*/
-        Object.defineProperty(vue, 'configM', {
-          get: function() {
-            //return config;
-			var configX = {
-			  performance: false
-			}
-			return configX;
-          }
-        })
-		console.log(vue.config);
-		vue.config = {};
-		console.log(vue.config);
-		vue.config.performance = true;
-		console.log(vue.config.performance);
-		
-		function Vue() {
-		}
-		Vue.options = {child:1}
-		Vue.prototype.option = function() {
-		  console.log('instance');
-		}
-		var vue = new Vue();
-		/*vue没有继承Vue的静态属性，只是继承了实例属性和方法；
-		  静态属性和方法只能通过构造函数调用和访问
-		*/
-		console.log(vue.option)
-		
+	  <script type='text/javascript'>
+	  //前端大文件上传思路：文件碎片化、文件特征、传输
 		let input = document.getElementById('file'),
 		    p = document.getElementById('con');
 		input.addEventListener('change', function(e){
@@ -131,6 +95,44 @@
 			xhr.send(data);
 		  }
 		})
+	  </script>
+      <script type='text/javascript'>
+        var vue = {},
+		config = {
+		  performance:false
+		};
+		/*在访问器属性getter内声明的变量均为只读，
+		  若访问器getter内返回的对象（configX）在内部声明，
+		  则configX的属性均为只读；
+		  若访问器getter内返回的对象（config）在外部已声明，
+		  则可通过定义了getter的属性（configM）读取和写入config属性
+		*/
+        Object.defineProperty(vue, 'configM', {
+          get: function() {
+            //return config;
+			var configX = {
+			  performance: false
+			}
+			return configX;
+          }
+        })
+		console.log(vue.config);
+		vue.config = {};
+		console.log(vue.config);
+		vue.config.performance = true;
+		console.log(vue.config.performance);
+		
+		function Vue() {
+		}
+		Vue.options = {child:1}
+		Vue.prototype.option = function() {
+		  console.log('instance');
+		}
+		var vue = new Vue();
+		/*vue没有继承Vue的静态属性，只是继承了实例属性和方法；
+		  静态属性和方法只能通过构造函数调用和访问
+		*/
+		console.log(vue.option)
       </script>
   </body>
 </html>
