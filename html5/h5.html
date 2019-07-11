@@ -72,29 +72,64 @@
 			  chunks = Math.ceil(size/chunkSize),
 			  currentChunk = 0,
 			  md5 = new SparkMD5(),
-			  blob,
-			  reader = new FileReader();
+			  hash,
+			  reader = new FileReader(),
+			  frags = [],
+			  i = 0;
+			  frags[i] = [];
 		  p.innerHTML = '长度：' + size + '；文件类型：' + type;
+		  //文件拆分碎片化
 		  function loadText(){
 		    var start = currentChunk * chunkSize,
-			    end = ((currentChunk * chunkSize + chunkSize) < size) ? start + chunkSize : size;
-			//文件拆分
+			    end = ((currentChunk * chunkSize + chunkSize) < size) ? start + chunkSize : size,
+				blob;
 		    blob = slice.call(file, start, end);
+			frags[i].push(blob);
+			if( frags[i].length > 9) {
+			  i++;
+			  frags[i] = [];
+			}
 			reader.readAsText(blob);
 		  }
 		  reader.onerror = function(){
 			console.log('read error');
 		  }
+		  //生成文件特征，sparkMD5
 		  reader.onload = function() {
 			md5.append(reader.result);
 			currentChunk++;
 			if(currentChunk < chunks){
 			  loadText();
 			} else {
-			  console.log('文件特征',md5.end());
+			  hash = md5.end();
 			}
 		  }
 		  loadText();
+		  //文件传输，递归调用ajax，防止浏览器卡死
+		  var j = 0,
+		      lens = frags.length,
+			  xhr = new XMLHttpRequest();
+		  function ajax(){
+		    var data = encodeURIComponent('file') + '=' + encodeURIComponent(frags[j])
+			           + '&' + encodeURIComponent('code') + '=' + encodeURIComponent(hash);
+		    xhr.onreadystatechange = function(){
+			  if(xhr.readyState === 4) {
+			    if((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+				  if(xhr.result.code === 200){
+				     j++;
+					 if(j <lens) {
+					   ajax();
+					 }
+				  }
+				}
+			  }
+			}
+			xhr.onerror = function(e) {
+			  console.log('error');
+			}
+			xhr.open('post',url);
+			xhr.send(data);
+		  }
 		})
       </script>
   </body>
