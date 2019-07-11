@@ -22,6 +22,7 @@
 	    <input type='file' id='file' multiple>
 		<p id='con'></p>
 	  </div>
+	  <script type='text/javascript' src='spark-md5.min.js'></script>
       <script type='text/javascript'>
         var vue = {},
 		config = {
@@ -64,24 +65,36 @@
 		    p = document.getElementById('con');
 		input.addEventListener('change', function(e){
 		  let file = e.target.files[0],
+		      slice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice,
 		      size = file.size,
 			  type = file.type,
+			  chunkSize = 102400,//100KB
+			  chunks = Math.ceil(size/chunkSize),
+			  currentChunk = 0,
+			  md5 = new SparkMD5(),
 			  blob,
 			  reader = new FileReader();
 		  p.innerHTML = '长度：' + size + '；文件类型：' + type;
-		  //文件拆分
-		  blob = file.slice(0, 101);
-		  if(blob){
-		    reader.readAsText(file);
-			reader.onerror = function(){
-			  console.log('read error');
-			}
-			reader.onload = function() {
-			  console.log(reader.result);
-			}
-		  } else {
-		    console.log('nodata');
+		  function loadText(){
+		    var start = currentChunk * chunkSize,
+			    end = ((currentChunk * chunkSize + chunkSize) < size) ? start + chunkSize : size;
+			//文件拆分
+		    blob = slice.call(file, start, end);
+			reader.readAsText(blob);
 		  }
+		  reader.onerror = function(){
+			console.log('read error');
+		  }
+		  reader.onload = function() {
+			md5.append(reader.result);
+			currentChunk++;
+			if(currentChunk < chunks){
+			  loadText();
+			} else {
+			  console.log('文件特征',md5.end());
+			}
+		  }
+		  loadText();
 		})
       </script>
   </body>
