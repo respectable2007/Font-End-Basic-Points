@@ -22,6 +22,9 @@
 	    <input type='file' id='file' multiple>
 		<p id='con'></p>
 	  </div>
+	  <div>
+		<input type="file" id='mul' multiple>
+	  </div>
 	  <script type='text/javascript' src='spark-md5.min.js'></script>
 	  <script type='text/javascript'>
 	  //前端大文件上传思路：文件碎片化、文件特征、传输
@@ -95,6 +98,29 @@
 			xhr.send(data);
 		  }
 		})
+	  </script>
+	  <script type="text/javascript">
+	   var fileUpload = document.getElementById('mul') ;
+	   fileUpload.addEventListener('change', function(e) {
+		 var files = e.target.files,
+			 formData = new FormData(),
+			 xhr = new XMLHttpRequest();
+		 for(var i = 0, lens = files.length; i < lens; i++) {
+			formData.append('file', files[i]);
+		 }
+         xhr.onreadystatechange = function(e) {
+		  if(xhr.readyState === 4) {
+			if((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+			  console.log('success')
+			}
+		  }
+		 }
+		 xhr.onerror = function() {
+		  console.log('error')
+		 }
+		 xhr.open('post', url, false);
+		 xhr.send(formData);
+	   })
 	  </script>
       <script type='text/javascript'>
         var vue = {},
