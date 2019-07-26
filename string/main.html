@@ -41,6 +41,13 @@
 	  console.log('111As111 of Saturday, Huawei has received 28 contracts from Europe, 11 from the Middle East, six from the,'.match(/\b[^\d_]\w+[^\d_]\b/g))
 	  //将字符串'abCdEFg'改写为ab.cd.e.fg
 	  'abCdEFg'.replace(/([A-Z])/g, '.$1').toLocaleLowerCase()
+
+	  /* 正则表达式与字符串 */
+	  var string = 'regexe',
+	      string1 = 'copyright 2003.';
+	  console.log(/\w+s/.exec(string));
+	  //第一个捕获组匹配结果是3，而不是2003。是因为.*因为[0-9]+必须释放一些字符，但有先来先服务原则，仅释放字符3和点号，3匹配[0-9],点号不匹配
+	  console.log(/^.*([0-9]+)/.exec(string1));
     </script>
   </body>
 </html>
