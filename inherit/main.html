@@ -5,7 +5,7 @@
   </head>
   <body>
     <script type='text/javascript'>
-	  //不使用构造函数和class实现继承
+	  //不使用构造函数和class实现继承,原型式继承或寄生继承
 	  function object(o){
 	    var newo = new Object();
 	    if(o === null) return newo;
@@ -23,6 +23,12 @@
 	    var clone = object(original);
 		return clone;
 	  }
+	  //Object.create的继承
+	  function Parent(){}
+	  Parent.constructor = Parent;
+	  function Child(){}
+	  Child.prototype = Object.create(new Parent());
+	  console.log((new Child()) instanceof Parent);//false
     </script>
   </body>
 </html>
