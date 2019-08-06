@@ -22,6 +22,7 @@
 		<li>e</li>
 	  </ul>
 	</div>
+    <button type='button' id='btn'>事件啊事件</button>
 	<script type='text/javascript'>
 	  var node = document.getElementsByTagName('*');
 	  var d = document.getElementById('d');
@@ -147,5 +148,31 @@
 		console.log(e.target.innerHTML)
 	  })
 	</script>
+	<script type='text/javascript'>
+	  /*var list = document.getElementsByTagName('li');
+	   for(var i = 0; i < list.length; i++) {
+		  list[i].addEventListener('click', function(e) {
+			alert(i);
+	     },false)
+       }*/
+	</script>
+	<script type='text/javascript'>
+	   var btn = document.getElementById('btn');
+	   btn.onclick = function(e) {
+	     console.log(e.currentTarget === this);
+	     console.log(e.currentTarget === e.target);
+	   }
+	   document.body.onclick = function(e) {
+	     console.log(e.currentTarget);
+		 console.log(e.target)
+	   }
+	   var doms = document.getElementsByTagName('*'),
+	       lenss = doms.length,
+		   str = '';
+	   for(var i = 0; i < lenss; i++) {
+	     str += doms[i].tagName + ':' + doms[i].sourceIndex + '\n';
+	   }
+	   console.log(str);
+	 </script>
   </body>
 </html>

@@ -66,7 +66,6 @@
      </span> 
      <mark>11111</mark>
      <meter></meter>
-	 <button type='button' id='btn'>事件啊事件</button>
 	 <div id="link-box">
 	  <!-- 注意 href 属性值，链接后面加了一个换行 -->
 	  <a href="http://hcysun.me
@@ -132,65 +131,7 @@
       // console.log(f2.__proto__)
       // console.log(f2 instanceof F);
       // console.log(document.getElementsByClassName('a'))
-
-      // var filter = function(node){
-      //   return node.nodeType == 1? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
-      // }
-      // var nodeIterator = document.createNodeIterator(document,NodeFilter.SHOW_ALL,filter,false);
-      // var node = nodeIterator.nextNode();
-      // while(node != null) {
-      //   console.log(node.tagName);
-      //   node = nodeIterator.nextNode();
-      // }
-
-      // var walker = document.createTreeWalker(document.getElementById('a'),NodeFilter.SHOW_ELEMENT,null,false);
-      // walker.firstChild();
-      // walker.nextSibling();
-      // var node = walker.firstChild();
-      // while(node != null) {
-      //   console.log(node.tagName);
-      //   node = walker.nextSibling();
-      // }
-
-      // function dfs(node){
-      //   if(!(node instanceof Node) || node.childNodes.length == 0){
-      //     return;
-      //   }
-      //   var child = node.childNodes;
-      //   for(var i = 0; i < child.length;i++) {
-      //     if(child[i].nodeType != 1) {
-      //       continue;
-      //     }
-      //     console.log(child[i]);
-      //     dfs(child[i]);
-      //   }
-      //   return;
-      // }
-
-      // function dfs(node) {
-      //   var list = [],
-      //   head = 0,
-      //   tail = 0;
-      //   list[tail] = node;
-      //   tail ++;
-      //   if(!(node instanceof Node) && node.childNodes.length == 0){
-      //     return;
-      //   }
-      //   while(head < tail){
-      //     var sublist = list[head].childNodes;
-      //     for(var i = 0,len = sublist.length; i < len; i ++) {
-      //       if(sublist [i].nodeType != 1) {
-      //        continue;
-      //       };
-      //       list[tail] = sublist[i];
-      //       tail++;
-      //     }
-      //     head ++;
-      //   }
-      // }
-      // dfs(document.getElementById('a'));
-      // dfs(null);
-      
+     
       function Father() {}
       Father.prototype = {
         constructor:Father
@@ -525,38 +466,18 @@
 
 	 </script>
 	 <script type='text/javascript'>
-	  /*var list = document.getElementsByTagName('li');
-	   for(var i = 0; i < list.length; i++) {
-		  list[i].addEventListener('click', function(e) {
-			alert(i);
-	     },false)
-       }*/
-	 </script>
-	 <script type='text/javascript'>
-	   var btn = document.getElementById('btn');
-	   btn.onclick = function(e) {
-	     console.log(e.currentTarget === this);
-	     console.log(e.currentTarget === e.target);
-	   }
-	   document.body.onclick = function(e) {
-	     console.log(e.currentTarget);
-		 console.log(e.target)
-	   }
-	   var doms = document.getElementsByTagName('*'),
-	       lenss = doms.length,
-		   str = '';
-	   for(var i = 0; i < lenss; i++) {
-	     str += doms[i].tagName + ':' + doms[i].sourceIndex + '\n';
-	   }
-	   console.log(str);
-	 </script>
-	 <script type='text/javascript'>
 	   console.log(undefined === undefined)
 	   var watchers = [0,1,2,3,4];
 	   watchers.splice(4,0,'ren');
-	   console.log(watchers);
-	   
+	   console.log(watchers);  
 	   console.log(document.getElementById('link-box').innerHTML)
+	 </script>
+	 <script type='text/javascript'>
+	   function argu(a, b, c) {
+	     console.log(Array.prototype.slice.call(arguments));
+	     return a + b + c;
+	   }
+	   argu(1, 2, 3)
 	 </script>
   </body>
 </html>
