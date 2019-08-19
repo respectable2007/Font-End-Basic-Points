@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+   <meta charset='utf-8'>
+   <meta http-equiv='content-type' content='text/html'>
+  <head>
+    <title>JSON</title>
+  </head>
+  <body>
+     <script type='text/javascript'>
+       "use strict";
+       var obj = {
+	     USER_ID: '4403001',
+		 PASSWORD: 'e10adc3949ba59abbe56e057f20f883e'
+		},
+		str = JSON.stringify(obj),
+		obj2 = JSON.parse('USER_ID=4403001&PASSWORD=e10adc3949ba59abbe56e057f20f883e');
+		console.log(str);
+		console.log(obj2);
+		
+     </script>
+  </body>
+</html>
