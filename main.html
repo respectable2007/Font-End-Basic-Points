@@ -31,6 +31,8 @@
         width:200px;
         height: 200px;
       }
+	  @page rotated{size:landscape;}
+	  
     </style>
   </head>
   <body>
@@ -73,7 +75,24 @@
 	  <!-- 注意 href 属性值，链接后面加了一个Tab -->
 	  <a href="http://hcysun.me	">bbbb</a>
 	 </div>
-
+<!--多行文本在块级元素的垂直居中问题-->
+<div style='height:200px;line-height:200px;'>
+  <span style='display:inline-block;vertical-align:middle;line-height:22px'>
+	测试文字 测试文字 测试文字br/>gdfafsafsf 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字br/测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字br/
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+	测试文字 测试文字 测试文字br/> 测试文字br/> 测试文字br/> 测试文字
+  </span>
+</div>
      <script type='text/javascript'>
        "use strict";
        window.t = 1;

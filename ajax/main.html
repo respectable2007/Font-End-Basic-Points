@@ -56,6 +56,7 @@
 		}
 		return xhr;
 	  }
+	  //图片转为base64
 	  var file = document.getElementById('file');
 	  file.onchange = function(e){
 	    console.log(file);
@@ -67,6 +68,58 @@
 		  console.log(reader.result);
 		  img.src = reader.result;
 		}
+	  }
+	  function Ajax(){
+	    var default = {
+		  method: 'get',
+		  contentType: 'application/x-www-form-urlencoded;charset="UTF-8"',
+		  async: true//是否异步
+		};
+		default = Object.assign(default, arguments[0]);
+		if(!default.url){
+		  return;
+		}
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+		  if(xhr.readyState == 4){
+		    if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+			  if(default.success){
+			    default.success(xhr.responseText);
+			  }
+			}
+		  }
+		}
+		if(default.contentType) {
+		  xhr.setRequestHeader('Content-Type', default.contentType);
+		}
+		//超时
+		if(default.timeout){
+		  xhr.timeout = default.timeout;
+		  xhr.ontimeout = default.ontimeout || this.nofunction;
+		}
+		if(default.method == 'get'){
+		  xhr.open(default.url + '?' + this.serialize(default.data), default.async);
+		  xhr.send(null);
+		} else {
+		  xhr.open(default.url, default.async);
+		  xhr.send(this.serialize(default.data));
+		}
+		//错误
+		xhr.onerror = default.error || this.nofunction;
+		//停止
+		xhr.onabort = default.abort || this.nofunction;
+	  }
+	  Ajax.prototype.nofunction = function(){};
+	  //序列化
+	  Ajax.prototype.serialize = function(data) {
+	    var str = '';
+		if(typeof data == 'undefined' || !data){
+		  return;
+		}
+		for(var i in data){
+		  str += i + '=' + data[i] + '&';
+		}
+		return str.substring(0, str.length - 1);
 	  }
 	</script>
   </body>
