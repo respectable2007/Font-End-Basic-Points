@@ -39,9 +39,9 @@
     <script type="text/javascript">
       var div = document.getElementsByClassName('content')[0],
           p = document.getElementsByTagName('p')[0];
-      console.log(div.offsetHeight);
-      console.log(div.clientHeight);
-      console.log(div.scrollHeight);
+      console.log(div.offsetHeight);//内容高度+内边距+边框
+      console.log(div.clientHeight);//内容高度+内边距
+      console.log(div.scrollHeight);//clientHeight+scrollTop
       div.onscroll = function() {
         console.log(div.scrollTop)
       }

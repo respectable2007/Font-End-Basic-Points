@@ -77,7 +77,12 @@
               var scrollTop = document.body.scrollTop || document.documentElement.scrollTop; 
               for(let i = 0; i<urls.length;i++){ 
                 var img = imgArr[i];
-                //在可视化区域内
+                /*获取子元素相对可视区域位置：
+				  发生滚动时，父元素及子元素发生滚动；
+				  可视区域未滚动；
+				  offsetTop是相对于父元素上内边框的距离;
+				  因此，相对可视区域位置=offsetTop-scrollTop；
+				*/
                 var dis = img.parentElement.offsetTop - scrollTop;
                 if(dis < clientH && (dis >= 0 || dis + 800 >= 0)){
                   img.src = img.getAttribute("data-url"); 

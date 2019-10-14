@@ -49,21 +49,24 @@
         a:active{
             color:yellow;
         }
-        span:first-letter{
-          color: red;
-        }
         .img{
           padding:20px;
           background:red;
           margin:50px;
           border:4px solid green;
         }
+		
+        div:first-line 
+        {
+		 color: #ff0000;
+         font-size:xx-large;
+	    }
         /* h1{font-size:24px;}
         h2{font-size:18px;}
         p{font-size:12px;}
         h1,h2,p{margin-left: 1em;}
         small{font-size: 0.5em;} */
-        html {
+        /*html {
           font-size:20px;
         }
         @media only screen and (min-width:401px) {
@@ -90,13 +93,14 @@
           html {
             font-size:40px;
           }
-        }
+        }*/
         button {
           width: 6rem;
           height: 3rem;
           font-size: 0.5rem;
           background:burlywood;
         }
+		
       </style>
   </head>
   <body>
@@ -118,8 +122,9 @@
         </tbody>
     </table> -->
     <!-- </div> -->
+	<div>you are my sunshine!</div>
     <div class="container">
-        <ul>
+       <ul>
             <li>
                 <a href="https://www.cnblogs.com/respect2017/p/10154555.html" target="blank">djka;fjkda;fjkl</a>
             </li>
@@ -172,6 +177,9 @@
             remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
         }
 
+        //要等 viewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+        refreshRem();
+
         if (docEl.firstElementChild) {
             docEl.firstElementChild.appendChild(remStyle);
         } else {
@@ -180,9 +188,7 @@
             doc.write(wrap.innerHTML);
             wrap = null;
         }
-        //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
-        refreshRem();
-
+		
         win.addEventListener("resize", function() {
             clearTimeout(tid); //防止执行两次
             tid = setTimeout(refreshRem, 300);
@@ -195,13 +201,13 @@
             }
         }, false);
 
-        if (doc.readyState === "complete") {
+       /* if (doc.readyState === "complete") {
             doc.body.style.fontSize = "16px";
         } else {
             doc.addEventListener("DOMContentLoaded", function(e) {
                 doc.body.style.fontSize = "16px";
             }, false);
-        }
+        }*/
     })(750, 750);
    </script>
   </body>

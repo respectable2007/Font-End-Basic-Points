@@ -8,54 +8,6 @@
     <input type='file' id='file'>
 	<img id='img' width='200px'>
     <script type='text/javascript'>
-	  function ajax(){
-	    var obj = Object.assign({
-		  method: 'get',
-		  contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-		}, arguments[0])
-	    function serialize(data){
-		  var ser = '';
-		  for(var i in data){
-		    ser += i + '=' + data[i] + '&'
-		  }
-		  return ser.substring(0, ser.length - 1);
-		}
-		if(!url){
-		  return;
-		}
-	    var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function(){
-		  if(xhr.readyState === 4){
-		    if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-			  console.log(xhr.responseText);
-			}
-		  }
-		}
-		if(obj.timeout){
-		  xhr.timeout = obj.timeout;
-		  xhr.ontimeout = function(e){
-		    console.log('timeout');
-		  }
-		}
-		xhr.onabort = function(e){
-		  console.log(e);
-		}
-		xhr.onerror = function(e){
-		  console.log(e)
-		}
-		// 表单提交
-		if(obj.contentType){
-		  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
-		}
-		if(obj.method === 'get'){
-		  xhr.open( obj.method,url+'?' + serialize(data), false);
-		  xhr.send(null);
-		} else {
-		  xhr.open( 'post',url, false);
-		  xhr.send(serialize(data));
-		}
-		return xhr;
-	  }
 	  //图片转为base64
 	  var file = document.getElementById('file');
 	  file.onchange = function(e){

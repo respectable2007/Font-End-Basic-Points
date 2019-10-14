@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <meta charset='utf-8'>
       <title>String API</title>
   </head>
   <body>
@@ -10,7 +11,7 @@
 		  str3 = str1.concat([1,2,3,4,5]),//a1,2,3,4,5
 		  str4 = str1.concat({b:'b'}),//a[object Object]
 		  str5 = 'at,bat,cat,dat,eat',
-		  str6 = str5.replace(/(at)/g,'word($1)'),//word(at),bword(at),cword(at),dword(at),eword(at)
+		  str6 = str5.replace(/(a(t))/g,"word($1)ren[$']"),//word(at),bword(at),cword(at),dword(at),eword(at)
 		  str7 = str5.replace(/(at)/g, function(...match) {
 		    /*
 			["at", "at", 0, "at,bat,cat,dat,eat"]
