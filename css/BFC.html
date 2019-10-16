@@ -4,11 +4,13 @@
     <meta charset='utf-8'>
     <title>BFC</title>
     <style type="text/css">
-      div,p{
+      div,p,body,html{
         margin:0;
         padding: 0;
       }
-      .p{
+      /*float*/
+	  /*float+overflow*/
+	  /*.baba{
         background:gray;
         overflow: hidden;
       }
@@ -25,13 +27,61 @@
         height: 200px;
         background:lightcoral;
         overflow: hidden;
-      }
+		zoom:1;
+      }*/
+	  /*position*/
+	  /*position:absolute*/
+	  /*.baba{
+		position:relative;
+	  }
+	  .c1{
+	    position:absolute;
+		width:100px;
+		background:lightcoral;
+	  }
+	  .c2{
+	    position:absolute;
+		left:100px;
+		right:0;
+	  }*/
+	  /*inline-block*/
+	  /*inline-block+margin+calc*/
+	  /*.baba{
+	    font-size:0;
+	  }
+	  .c1,.c2{
+	    display:inline-block;
+		font-size:16px;
+	  }
+	  .c1{width:100px;}
+	  .c2{width:calc(100% - 100px);*/
+	  /*inline-block+margin+(fix)*/
+	  .baba{
+	    font-size:0;
+	  }
+	  .c1,.c2{
+	    display:inline-block;
+		font-size:16px;
+	  }
+	  .c1{
+	    width:100px;
+	  }
+	  .c2{
+	    width:100%;
+		margin-left:-100px;
+	  }
+	  .c2>div{
+	    margin-left:100px;
+	  }
     </style>
   </head>
   <body>
-    <div class="p">
+    <div class="baba">
         <div class="c1">111111</div>
-        <div class="c2">ffhkdfjkdal;j</div>
+        <div class="c2">
+		  <div>ffhkdfjkdal;j
+		  </div>
+		</div>
     </div>
     <div class="s">
     </div>

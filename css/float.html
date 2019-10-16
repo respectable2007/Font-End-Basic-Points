@@ -15,16 +15,24 @@
       }
       .container{
         background: lightgreen;
+		display:inline-block;
       }
       .left{
-        float: left;;
+        float: left;
         background:lightcoral;
         width:100px;
+		position:relative;
       }
       .middle{
+	    float:left;
+		width:100%;
+		margin-left:-100px;
         background: lightgoldenrodyellow;
         /* clear:left; */
       }
+	  .middle > div{
+	    margin-left: 100px; 
+	  }
       .right{
         float: left;
         background: lightblue;
@@ -32,9 +40,7 @@
         width:100px;
       }
       .clear:after{
-        content:'.';
-        height: 0;
-        visibility: hidden;
+        content:'';
         display:block;
         clear:both;
       }
@@ -45,9 +51,11 @@
         <!-- <img src='http://pic33.photophoto.cn/20141225/0005018458319042_b.jpg' class="img"> -->
         <div class="left">left</div>
         <div class="middle">
-        middle
-        <br>
-        middle
+		  <div>
+            middle
+            <br>
+            middle
+		  </div>
         </div>
     </div>
   </body>
