@@ -5,11 +5,43 @@
     <title>fileSaver</title>
   </head>
   <body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src='FileSaver.min.js'></script>
-    <script type="text/javascript">
-    //   var fileSaver = new FileSaver();
-    var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, "hello.txt");
-    </script>
+	<script type="text/javascript" src='jszip.min.js'></script>
+	<script type='text/javascript'>
+	  var list = [{
+	    url: 'http://b.hiphotos.baidu.com/image/pic/item/908fa0ec08fa513db777cf78376d55fbb3fbd9b3.jpg'
+	  }]
+	  function getFile(item){
+	    return new Promise((resolve, reject)=>{
+		  axios({
+		    url: item.url,
+			method: 'get',
+			responseType:' arraybuffer'
+		  }).then(data=>{
+		    resolve(data);
+		  }).catch(error=>{
+		    reject(error.toString());
+		  })
+	    })
+	  };
+	  async function handleBatchFiles(list){
+	    var alls = [];
+		await list.forEach(function(item, key){
+		  var promise = getFile(item).then(data=>{
+		    var names = item.url.split('/'),
+			    filename = names[names.length - 1];
+		    out.file(filename,data,{binary:true});
+			alls.push(promise);
+		  })
+		})
+		Promise.all(alls).then(data=>{
+		  out.generateAsync({type:'blob'}).then(data=>{
+		    saveAs(data, 'download.zip');
+		  })
+		})
+	  }
+	  handleBatchFiles(list);
+	</script>
   </body>
 </html>

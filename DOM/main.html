@@ -12,6 +12,8 @@
 	  console.log(dom.className)
 	  function addClass(element, name) {
 	    if(!element || ((name !== 0) && !name)) return;
+		console.log(1);
+		console.log(element.getAttribute('class'));
 		if(element.className) {
 		  element.className += ' ' + name;
 		} else if(element.getAttribute){
@@ -19,7 +21,7 @@
 		  element.setAttribute('class', (classname === null ? '' : classname)+ ' ' + name)
 		}
 	  }
-	  //addClass(dom, 'sample')
+	  addClass(dom, 'sample')
 	  //addClass(dom, 'DIV')
 	  //模拟jQuery的addClass
 	  function addClass(elms, value) {
@@ -51,67 +53,83 @@
 		}
 		return elms;
 	  }
-	  addClass([dom], 'sample DIV')
+	  //addClass([dom], 'sample DIV')
 	</script>
 	<script type='text/javascript'>
+	  /*document对象*/
+	  
+	    console.log(document.ready);
+	   /* document.bgColor='red';//页面背景色
+	    document.fgColor='green';//页面文本颜色
+	  */
+	  /*document.ready DOMContentLoaded window.onload*/
+	  document.ready = function(){
+	    console.log(1);
+	  }
+	  window.onload = function(){
+	    console.log(2);
+	  }
+	  document.addEventListener('DOMContentLoaded', function(){
+	    console.log(3);
+	  })
 	  /*DOM遍历*/
-	  // var filter = function(node){
-      //   return node.nodeType == 1? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
-      // }
-      // var nodeIterator = document.createNodeIterator(document,NodeFilter.SHOW_ALL,filter,false);
-      // var node = nodeIterator.nextNode();
-      // while(node != null) {
-      //   console.log(node.tagName);
-      //   node = nodeIterator.nextNode();
-      // }
+	   var filter = function(node){
+         return node.nodeType == 1? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+       }
+       var nodeIterator = document.createNodeIterator(document,NodeFilter.SHOW_ALL,filter,false);
+       var node = nodeIterator.nextNode();
+       while(node != null) {
+         console.log(node.tagName);
+         node = nodeIterator.nextNode();
+       }
 
-      // var walker = document.createTreeWalker(document.getElementById('a'),NodeFilter.SHOW_ELEMENT,null,false);
-      // walker.firstChild();
-      // walker.nextSibling();
-      // var node = walker.firstChild();
-      // while(node != null) {
-      //   console.log(node.tagName);
-      //   node = walker.nextSibling();
-      // }
+       var walker = document.createTreeWalker(document.getElementById('a'),NodeFilter.SHOW_ELEMENT,null,false);
+       walker.firstChild();
+       walker.nextSibling();
+       var node = walker.firstChild();
+       while(node != null) {
+         console.log(node.tagName);
+         node = walker.nextSibling();
+       }
 
-      // function dfs(node){
-      //   if(!(node instanceof Node) || node.childNodes.length == 0){
-      //     return;
-      //   }
-      //   var child = node.childNodes;
-      //   for(var i = 0; i < child.length;i++) {
-      //     if(child[i].nodeType != 1) {
-      //       continue;
-      //     }
-      //     console.log(child[i]);
-      //     dfs(child[i]);
-      //   }
-      //   return;
-      // }
+       function dfs(node){
+         if(!(node instanceof Node) || node.childNodes.length == 0){
+           return;
+         }
+         var child = node.childNodes;
+         for(var i = 0; i < child.length;i++) {
+           if(child[i].nodeType != 1) {
+             continue;
+           }
+           console.log(child[i]);
+           dfs(child[i]);
+         }
+         return;
+       }
 
-      // function dfs(node) {
-      //   var list = [],
-      //   head = 0,
-      //   tail = 0;
-      //   list[tail] = node;
-      //   tail ++;
-      //   if(!(node instanceof Node) && node.childNodes.length == 0){
-      //     return;
-      //   }
-      //   while(head < tail){
-      //     var sublist = list[head].childNodes;
-      //     for(var i = 0,len = sublist.length; i < len; i ++) {
-      //       if(sublist [i].nodeType != 1) {
-      //        continue;
-      //       };
-      //       list[tail] = sublist[i];
-      //       tail++;
-      //     }
-      //     head ++;
-      //   }
-      // }
-      // dfs(document.getElementById('a'));
-      // dfs(null);
+       function fns(node) {
+         var list = [],
+         head = 0,
+         tail = 0;
+         list[tail] = node;
+         tail ++;
+         if(!(node instanceof Node) && node.childNodes.length == 0){
+           return;
+         }
+         while(head < tail){
+           var sublist = list[head].childNodes;
+           for(var i = 0,len = sublist.length; i < len; i ++) {
+             if(sublist [i].nodeType != 1) {
+              continue;
+             };
+             list[tail] = sublist[i];
+             tail++;
+           }
+           head ++;
+         }
+       }
+       dfs(document.getElementById('a'));
+       dfs(null);
 	</script>
   </body>
 </html>

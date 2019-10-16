@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+	<title>flex</title>
+	<style type='text/css'>
+	  div,p{margin:0;padding:0;}
+	  div{
+	    display:flex;
+		/*
+		  flex-flow是flex-direction和flex-wrap的简写
+		  align-content是多轴的对齐方式
+		*/
+		flex-direction: row;/*项目排列方式row row-reverse column column-reverse*/
+		flex-wrap: wrap;/*项目换行nowrap wrap wrap-reverse*/
+		justify-content: center;/*项目在主轴上的对齐方式flex-start flex-end center space-between space-round*/
+		align-items:center;/*项目在交叉轴的对齐方式flex-start flex-end center baseline stretch*/
+		height:400px;
+		border:1px solid red;
+		width:364px;
+	  }
+	  div p{
+	    width:100px;
+		flex:1;
+		background:gray;
+	  }
+	  /*
+		  flex是flex-grow、flex-shrink和flex-basis的简写
+		*/
+	  .p1{
+		width:100px;
+		flex-grow:1;/*项目等比例放大*/
+		flex-shrink:1;/*项目等比例缩放*/
+		flex-basis:0%;/*项目占主轴的空间大小，若项目有换行，对换行有一定影响*/
+        order:3;/*项目在父容器的出现顺序*/
+		align-self: baseline;/*项目的对齐方式auto flex-start flex-end center baseline stretch*/
+	  }
+	  
+	</style>
+  </head>
+  <body>
+    <div>
+	  <p class='p1'>1</p>
+	  <p class='p2'>2</p>
+	  <p class='p3'>3</p>
+	  <p class='p4'>4</p>
+	  <p class='p5'>5</p>
+	</div>
+  </body>
+</html>
