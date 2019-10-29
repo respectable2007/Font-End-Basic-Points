@@ -49,6 +49,35 @@
 	  console.log(/\w+s/.exec(string));
 	  //第一个捕获组匹配结果是3，而不是2003。是因为.*因为[0-9]+必须释放一些字符，但有先来先服务原则，仅释放字符3和点号，3匹配[0-9],点号不匹配
 	  console.log(/^.*([0-9]+)/.exec(string1));
+	  var str = "this is test string <img src=\"http:yourweb.com/test.jpg\" width='50' > 123 and the end <img src=\"所有地址也能匹配.jpg\" /> 33! <img src=\"/uploads/attached/image/20120426/20120426225658_92565.png\" alt=\"\" />"
+	  //匹配图片（g表示匹配所有结果i表示区分大小写）
+	  var imgReg = /<img.*?>|\/>/gi;
+	  //匹配src属性
+	  var srcReg = /(?<=src\=)[\'\"]?([^\'\"]*)[\'\"]?/i;
+	  var arr = str.match(imgReg);
+	  console.log(arr);
+	  for (var i = 0; i < arr.length; i++) {
+	    var src = arr[i].match(srcReg)[0].split('').reverse().join('');
+      }
+      //解析URL
+	  function getSearch(url){
+	    var urlReg = /(?<=\?)(\w+\=\w*&?)*/i;
+		return url.match(urlReg);
+	  }
+	  console.log(getSearch('http://zhuanzhuan.com/?user=lilei&sex=male&age=21'));
+	  //var _reg = /(?<=^netease).*(?=163$)/g,
+	  var _reg = /^netease.*163$/g,
+	      testReg = /(test)/g,
+	  stringReg = 'testnateasejtestkfdla;jfkdla;163test163';
+	  stringReg.replace(testReg, function(m,index,pos,origionText){
+	    console.log(index);
+		console.log(m);
+		console.log(pos);
+		console.log(origionText);
+	  });
+	  console.log(testReg.exec(stringReg));
+	  console.log(testReg.exec(stringReg));
+	  console.log(testReg.exec(stringReg));
     </script>
   </body>
 </html>
