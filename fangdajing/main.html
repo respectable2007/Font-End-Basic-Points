@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+	<title>放大镜</title>
+	<style type='text/css'>
+	  .preview{
+	    position: relative;
+		display: inline-block;
+	  }
+	  .zoomHandle{
+	    position:absolute;
+		background: rgba(255,255,0,0.2);
+		cursor:move;
+		top:0;
+		left:0;
+        width: 236px;
+		height:236px;
+		visibility: hidden;
+	  }
+	  .zoomPart{
+	   display: inline-block;
+	   visibility: hidden;
+	   width:540px;
+	   height:540px;
+	   box-shadow:0 0 2px 2px red;
+	   background:url(img.jpg) 0 0 no-repeat no-repeat;
+	  }
+	</style>
+  </head>
+  <body>
+    <div class='preview'>
+      <img src='img.jpg' style='width:350px;height:450px'>
+	  <div class='zoomHandle'></div>
+	</div>
+	<div class='zoomPart'></div>
+	<script type='text/javascript'>
+      var h = document.getElementsByClassName('zoomHandle')[0],
+	      p = document.getElementsByTagName('img')[0],
+		  z = document.getElementsByClassName('zoomPart')[0];
+	  p.addEventListener('mouseover', function(e){
+	    h.style.visibility = 'visible';
+	    z.style.visibility = 'visible';
+	  },false);
+	  p.addEventListener('mouseout', function(e){
+	    h.style.visibility = 'hidden';
+	    z.style.visibility = 'hidden';
+	    console.log(h.style.visibility);
+	  },false);
+	  h.addEventListener('mouseover', function(e){
+	    e.stopPropagation();
+	  	h.style.visibility = 'visible';
+	  	z.style.visibility = 'visible';
+	  },false)
+	  h.addEventListener('mouseout', function(e){
+	    e.stopPropagation();
+	  	h.style.visibility = 'hidden';
+	  	z.style.visibility = 'hidden';
+	  },false)
+	  p.addEventListener('mousemove',function(e){
+		x = e.clientX;
+		y = e.clientY;
+		if( x <=118 && y <= 118) {
+		  x1 = 0;
+		  y1 = 0;
+		} else if( x <=118 && y >= 331) {
+		  x1 = 0;
+		  y1 = 214;
+		} else if(x >= 232 && y <= 118) {
+		  x1 = 114;
+		  y1 = 0;
+		} else if(x >= 232 && y >= 331){
+		  x1 = 114;
+		  y1 = 214;
+		} else {
+		  var x0 = e.clientX - 118,
+		      y0 = e.clientY - 118;
+		  x1 = (x0 > 0 ? (x0 > 114 ? 114 : x0): 0);
+		  y1 = (y0 > 0 ? (y > 214 ? 214 : y0): 0);
+		}
+		h.style.left = x1 + 'px';
+		h.style.top = y1 + 'px';
+		z.style.backgroundSize = '150% 180%';
+        z.style.backgroundPositionX = '-' + x1 * 1.5 + 'px';
+		z.style.backgroundPositionY = '-' + y1 * 1.8 + 'px';
+	  },false);
+	</script>
+  </body>
+</html>
