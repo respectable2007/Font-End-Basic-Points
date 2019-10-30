@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-9'>
+	<title>todolist</title>
+	<style type='text/css'>
+	</style>
+  </head>
+  <body>
+    <div>
+	  <form>
+	    <input type='text' id='txt'>
+		<input type='button' value='添加' id='btn'>
+	  </form>
+	</div>
+    <div>
+	  <ul class='item-container'>
+	  </ul>
+	</div>
+    <div>
+	  <input type='button' value='全部清除' id='clear'>
+	</div>
+    <div></div>
+    <script type='text/javascript'>
+	  var txtInput = document.getElementById('txt'),
+	    btn = document.getElementById('btn'),
+		cBtn = document.getElementById('clear'),
+		items = document.getElementsByClassName('item-container')[0],
+		//缓存
+		storages = JSON.parse(localStorage.getItem('list')),
+		id = storages ? parseInt(storages[storages.length -1].split(':')[0]) + 1 : 0;
+		//点击添加按钮
+		btn.addEventListener('click', function(e){
+		  var txt = txtInput.value;
+		  if(!txt) return;
+		  if(!storages){
+		    storages = [];
+		  }
+		  storages.push(id + ':' + txt);
+		  localStorage.setItem('list', JSON.stringify(storages));
+		  createSubItem([id, txt]);
+		  txtInput.value = '';
+		  id ++;
+		},false);
+		//添加到待办事项
+		function createSubItem(ts) {
+		  var li = document.createElement('li'),
+		      input = document.createElement('input'),
+			  delButton = document.createElement('input'),
+			  editButton = document.createElement('input'),
+			  fragment = document.createElement('fragment');
+		  input.value = ts[1];
+		  input.setAttribute('readonly', 'readonly');
+		  li.setAttribute('data-index', ts[0]);
+		  li.appendChild(input);
+		  delButton.type = 'button';
+		  editButton.type = 'button';
+		  delButton.value = '删除';
+		  editButton.value = '编辑';
+		  li.appendChild(delButton);
+		  li.appendChild(editButton);
+		  items.appendChild(li);
+		}
+		//可删除和编辑
+		items.addEventListener('click', function(e){
+		  var index = null;
+		  if(e.target.tagName == 'INPUT' && e.target.type == 'button'){
+		    index = parseInt(e.target.parentElement.getAttribute('data-index'));
+		  }
+		  if(e.target.value === '删除'){
+		    items.removeChild(e.target.parentElement);
+			storages.splice(index,1);
+		  }
+		  if(e.target.value === '编辑'){
+		    var el = e.target.parentElement.childNodes[0];
+			if(el.getAttribute('readonly')){
+			  el.removeAttribute('readonly');
+			}else{
+			  if(el.value !== storages[index]){
+			    storages[index] = index + ':'+ el.value;
+				console.log(storages);
+				localStorage.setItem('list', JSON.stringify(storages));
+			  }
+			  el.setAttribute('readonly','readonly');
+			}
+		  }
+		},false)
+		cBtn.addEventListener('click',function(e){
+		  localStorage.removeItem('list');
+		  var i = items.childNodes.length - 1;
+		  for(i; i > -1; i --){
+		    items.removeChild(items.childNodes[i])
+		  }
+		},false)
+		if(storages){
+		  showList();
+		}
+		function showList(){
+		  for(var i = 0; i < storages.length; i ++){
+		    createSubItem(storages[i].split(':'));
+		  }
+		}
+	</script>
+  </body>
+</html>
