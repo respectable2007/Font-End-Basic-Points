@@ -79,15 +79,15 @@
         /* background-image: url(sample.jpg); */
         background-origin: content-box;
       }
-      .origin4{
+      .origin4 span{
         width:400px;
         height:400px;
         padding:20px;
         border:10px dotted lightcoral;
-        background-image: url(../sample.jpg);
+        background-image: url(http://a.hiphotos.baidu.com/image/pic/item/728da9773912b31bc8107b1a8818367adab4e181.jpg);
         background-origin: content-box;
         -moz-background-inline-policy: continuous;
-        background-break: continuous;
+        -moz-background-break: continuous;
       }
     </style>
   </head>
@@ -100,6 +100,11 @@
     <div class="origin1"></div>
     <div class="origin2"></div>
     <div class="origin3">contentcontentcontentcontentcontent contentcontentcontentcontentcontentcontentcontent</div>
-    <div class="origin4">contentcontentcontentcontentcontent contentcontentcontentcontentcontentcontentcontent</div>
+    <div class="origin4">
+	  <span>
+	  contentcontentcontentcontentcontent contentcontentcontentcontentcontentcontentcontent<br>
+	  contentcontentcontentcontentcontent contentcontentcontentcontentcontentcontentcontent
+	  </span>
+	</div>
   </body>
 </html>
