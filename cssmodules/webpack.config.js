@@ -23,7 +23,7 @@ module.exports = {
           localIdentName:'[name]__[local]--[hash:base64:5]'
         }
       },{
-        loader:'sass'
+        loader:'sass-loader'
       }]
     }, {
       test: /\.scss$/,

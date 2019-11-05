@@ -95,6 +95,43 @@
         animation: ball 5s linear 0s infinite alternate;
         -webkit-animation: ball 5s linear 0s infinite alternate;
       }
+	  .rotate-container{
+	    width:200px;
+		height:200px;
+	  }
+	  .rotate-container span{
+	    position:relative;
+		display:block;
+		width:180px;
+		height:180px;
+		border: 10px solid #fff;
+		background:lightblue;
+        border-radius:50% 50%;
+		animation: rotate 2s linear infinite;
+	  }
+	  .rotate-container span i{
+	    position:absolute;
+		display:block;
+		width:10px;
+		height:10px;
+		left: 50%;
+		margin-left: -5px;
+		top: -10px;
+		background:gray;
+	  }
+	  @keyframes rotate{
+	    0%,100%{
+		  transform:rotate(0deg);
+		}
+		100%{
+		  transform: rotate(360deg);
+		}
+	  }
+	  .border-container{
+	    border-right: 50px solid red;
+		width:0px;
+		height:0px;
+	  }
     </style>
   </head>
   <body>
@@ -104,13 +141,26 @@
     <div class="ball-container">
         <div class="ball"></div>
     </div>
+	<div class='rotate-container'>
+	  <span>
+	    <i></i>
+	  </span>
+	</div>
+	<div class='border-container'>
+	</div>
     <script type='text/javascript'>
-      var t = document.getElementsByClassName('t')[0];
+      var t = document.getElementsByClassName('t')[0],
+	      t2 = document.getElementsByClassName('t2')[0];
       // console.log(t.style);
       t.addEventListener('transitionend',function(){
         t.style.backgroundColor = 'green';
-        alert('transition finished!');
+        //alert('transition finished!');
       })
+	  t.addEventListener('click', function(e){
+	    setTimeout(function(){
+		  t2.style.display = 'block';
+		}, 2000);
+	  },false)
     </script>
   </body>
 </html>
