@@ -6,6 +6,7 @@
   </head>
   <body>
     <canvas id='canvas' width = '400' height='300'>
+	<img src='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAYAEADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1nUYtZnlSfT7k2+/ho5yP3ft3H5cfWqPh7Xr5tbm0zUJBK4OFYcYxWb4mnur/AMQy2sc4jS3UEAtjJ/xqp4Zu1/4Sdrq/YFgCvmDgBvU11RpXpu/Yk6DxBqusJqgtNNRgMYyBnNU/Cepajea/Pb3l3M/lgkqW4z6YqzrXiEQXC2tnNHLNJnEpH3AfesvwlNaaf4hukknjYbP9cTwT3AojD927roB31zK0OJGdFhAO8scY9xWR4Zu4rk3+yZpT5+7cxySMAA/kAPwrI8TajDqWp2WnRzj7Mx3SupqPwre2Wn6rqNqZ1EZbKOehFZeyfJfqBSv7BLrx40V+R5UpHOeoxgf0FXdE0uXTPGEkNtNm32ktz1FUtW1i0t/GX2pgJoFXBA6GtDQNUtLnXbzUmkS2t9u1BI2B7n2raSnyeVgLuvaFdtqK6ppiqZ8fvEY/eqt4KtZWfUrq6jUu0xRlK8hh1Ht1oorGNRum16fmBS1SDUf+EnM9jYOxKDgx/czkZPp0PPtWp4c0GbSPtF1dwrK8uMBVyw9aKKl1XblQFfXLK/t/EsF5YWjTh0IC7chT/Qcirvhzw9JZzS399g3E2d0e0YXmiik6r5eUDNENpN48u7S4t1kSVAoXHQ4z/Kuvs9OtLGBYbeFVReRxk0UU6rei8kB//9k='>
     <script type="text/javascript">
       var canvas = document.getElementById('canvas'),
           context = canvas.getContext('2d'),
@@ -63,5 +64,35 @@
       }
       
     </script>
+	<script src='https://unpkg.com/tesseract.js@v2.0.0-beta.1/dist/tesseract.min.js'></script>
+	<script type='text/javascript'>
+      console.log(Tesseract);
+      const worker = Tesseract.createWorker();
+      console.log(worker);
+	  (function(worker){
+	    console.log(worker.load().then);
+		worker.load().then(function(){
+		  console.log(1);
+		  console.log(worker.loadLanguage('eng'));
+		  worker.loadLanguage('eng').then(function(){
+		    		  console.log(2);
+		    worker.initialize('eng').then(function(){
+			 		  console.log(1);
+			  worker.recognize('https://tesseract.projectnaptha.com/img/eng_bw.png').then(function(res){
+			    console.log(res);
+			  })
+			})
+		  })
+		})
+	  })(worker);
+		/*(async () => {
+		  await worker.load();
+		  await worker.loadLanguage('eng');
+		  await worker.initialize('eng');
+		  const { data: { text } } = await worker.recognize('https://tesseract.projectnaptha.com/img/eng_bw.png');
+		  console.log(text);
+		  await worker.terminate();
+		})();*/
+	</script>
   </body>
 </html>

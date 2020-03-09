@@ -7,6 +7,7 @@
 </head>
 <body>
 	<script type="text/javascript">
+	    console.log(/^([0-9]{0,17}||[0-9]{0,17}(\.[0-9]{0,2}))$/i.test('9999999'))
 		function nearMax(n) {
 			while(Math.floor(n/4)%10!=0){
 				//var m=n%Math.pow(10,j);
@@ -18,7 +19,7 @@
 			};
 			return n;
 		}
-		console.log(nearMax(96));
+		//console.log(nearMax(96));
 	</script>
 </body>
 </html>
